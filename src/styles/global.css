@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --olive-900: oklch(0.30 0.035 130);
+    --olive-700: oklch(0.42 0.045 130);
+    --olive-500: oklch(0.55 0.045 130);
+    --paper:     oklch(0.965 0.012 85);
+    --ink:       oklch(0.22 0.012 60);
+    --ink-soft:  oklch(0.42 0.010 60);
+    --ink-mute:  oklch(0.58 0.010 60);
+    --rule:      oklch(0.84 0.012 80);
+    --terra:     oklch(0.55 0.10 50);
+    --veg:       oklch(0.50 0.08 145);
+  }
+
+  html {
+    background-color: oklch(0.945 0.014 85);
+    color: var(--ink);
+    font-family: 'Manrope', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  body {
+    background-color: oklch(0.945 0.014 85);
+  }
+}
+
+@layer components {
+  /* Dotted leader line between name and price */
+  .leaders {
+    flex: 1 1 auto;
+    border-bottom: 1px dotted var(--rule);
+    transform: translateY(-4px);
+    min-width: 16px;
+    margin: 0 4px;
+  }
+
+  /* Vegetarian marker */
+  .veg-marker::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--veg);
+    opacity: 0.85;
+    margin-right: 5px;
+    transform: translateY(-1px);
+    vertical-align: middle;
+  }
+
+  /* Section heading rule */
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    transform: translateY(-3px);
+  }
+
+  /* Page ornament */
+  .ornament-stem {
+    width: 90px;
+    height: 1px;
+    background: var(--olive-500);
+    opacity: 0.7;
+  }
+
+  .ornament-center {
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--olive-500);
+    transform: rotate(45deg);
+    background: transparent;
+  }
+
+  .ornament-end {
+    width: 3.5px;
+    height: 3.5px;
+    border-radius: 50%;
+    background: var(--olive-700);
+  }
+
+  .ornament-leaf {
+    width: 5px;
+    height: 2px;
+    border-radius: 50%;
+    background: var(--olive-500);
+    opacity: 0.7;
+  }
+
+  .ornament-leaf-lg {
+    width: 8px;
+    height: 2.5px;
+    border-radius: 50%;
+    background: var(--olive-500);
+    opacity: 0.7;
+  }
+}

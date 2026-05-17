@@ -1,0 +1,182 @@
+---
+const speisen = [
+  { href: '#vorspeisen',      label: 'Vorspeisen' },
+  { href: '#platten-salate',  label: 'Platten & Salate' },
+  { href: '#nudeln-fisch',    label: 'Nudeln & Fisch' },
+  { href: '#backofen-pfanne', label: 'Backofen & Pfanne' },
+  { href: '#grill',           label: 'Vom Grill' },
+  { href: '#ueberbacken',     label: 'Überbacken' },
+  { href: '#burger-beilagen', label: 'Burger & Beilagen' },
+  { href: '#desserts',        label: 'Desserts' },
+];
+
+const getraenke = [
+  { href: '#aperitif',    label: 'Aperitif & Sekt' },
+  { href: '#alkoholfrei', label: 'Alkoholfrei' },
+  { href: '#bier',        label: 'Bier' },
+  { href: '#wein',        label: 'Wein' },
+  { href: '#flaschenwein',label: 'Flaschenweine' },
+  { href: '#kaffee',      label: 'Kaffee & Digestifs' },
+];
+
+const mehr = [
+  { href: '#ueber-uns',  label: 'Über uns' },
+  { href: '#allergene',  label: 'Allergene' },
+  { href: '#kontakt',    label: 'Kontakt' },
+];
+---
+
+<!-- Backdrop -->
+<div
+  id="bn-backdrop"
+  class="fixed inset-0 z-40 md:hidden"
+  style="background: rgba(0,0,0,0); pointer-events: none; transition: background 0.25s;"
+  aria-hidden="true"
+></div>
+
+<!-- Slide-up Sheet -->
+<div
+  id="bn-sheet"
+  class="fixed left-0 right-0 z-50 md:hidden rounded-t-2xl"
+  style="bottom: 64px; background: var(--paper); transform: translateY(110%); transition: transform 0.3s cubic-bezier(0.32,0.72,0,1); box-shadow: 0 -8px 40px rgba(0,0,0,0.18);"
+  aria-hidden="true"
+>
+  <!-- Handle -->
+  <div class="flex justify-center pt-3 pb-2">
+    <div class="w-9 h-1 rounded-full" style="background: var(--rule);"></div>
+  </div>
+  <!-- Title -->
+  <p id="bn-sheet-title"
+    class="text-center font-sans text-[10px] tracking-[0.22em] uppercase pb-2"
+    style="color: var(--ink-mute);"
+  ></p>
+  <!-- Links -->
+  <nav id="bn-sheet-links" class="pb-6 px-2"></nav>
+</div>
+
+<!-- Bottom Bar -->
+<nav
+  class="fixed bottom-0 left-0 right-0 z-50 md:hidden"
+  style="background: var(--paper); border-top: 1px solid var(--rule); padding-bottom: env(safe-area-inset-bottom, 0px);"
+  aria-label="Hauptnavigation"
+>
+  <ul class="flex justify-around items-center h-16" role="list">
+
+    <!-- Mittag -->
+    <li>
+      <a href="#mittagskarte" id="bn-tab-mittag"
+        class="bn-tab flex flex-col items-center gap-[3px] px-4 py-2"
+        style="color: var(--ink-mute); text-decoration: none;"
+      >
+        <i class="ti ti-clock-hour-12" style="font-size: 22px;" aria-hidden="true"></i>
+        <span class="font-sans text-[10px] tracking-[0.1em] uppercase">Mittag</span>
+      </a>
+    </li>
+
+    <!-- Speisen -->
+    <li>
+      <button id="bn-tab-speisen"
+        class="bn-tab flex flex-col items-center gap-[3px] px-4 py-2 w-full"
+        style="color: var(--ink-mute); background: none; border: none; cursor: pointer;"
+        aria-expanded="false"
+      >
+        <i class="ti ti-tools-kitchen-2" style="font-size: 22px;" aria-hidden="true"></i>
+        <span class="font-sans text-[10px] tracking-[0.1em] uppercase">Speisen</span>
+      </button>
+    </li>
+
+    <!-- Getränke -->
+    <li>
+      <button id="bn-tab-getraenke"
+        class="bn-tab flex flex-col items-center gap-[3px] px-4 py-2 w-full"
+        style="color: var(--ink-mute); background: none; border: none; cursor: pointer;"
+        aria-expanded="false"
+      >
+        <i class="ti ti-glass-full" style="font-size: 22px;" aria-hidden="true"></i>
+        <span class="font-sans text-[10px] tracking-[0.1em] uppercase">Getränke</span>
+      </button>
+    </li>
+
+    <!-- Mehr -->
+    <li>
+      <button id="bn-tab-mehr"
+        class="bn-tab flex flex-col items-center gap-[3px] px-4 py-2 w-full"
+        style="color: var(--ink-mute); background: none; border: none; cursor: pointer;"
+        aria-expanded="false"
+      >
+        <i class="ti ti-dots" style="font-size: 22px;" aria-hidden="true"></i>
+        <span class="font-sans text-[10px] tracking-[0.1em] uppercase">Mehr</span>
+      </button>
+    </li>
+
+  </ul>
+</nav>
+
+<script define:vars={{ speisen, getraenke, mehr }}>
+  const sheet     = document.getElementById('bn-sheet');
+  const backdrop  = document.getElementById('bn-backdrop');
+  const sheetTitle = document.getElementById('bn-sheet-title');
+  const sheetLinks = document.getElementById('bn-sheet-links');
+
+  const ACTIVE_COLOR  = 'oklch(0.42 0.045 130)';
+  const MUTE_COLOR    = 'var(--ink-mute)';
+
+  let currentTab = null;
+
+  function buildLinks(items) {
+    sheetLinks.innerHTML = items.map(({ href, label }) =>
+      `<a href="${href}"
+          class="block font-sans font-medium text-[14px] px-6 py-[11px]"
+          style="color: var(--ink); border-bottom: 1px solid var(--rule); text-decoration: none;"
+          onmouseover="this.style.background='oklch(0.96 0.008 85)'"
+          onmouseout="this.style.background=''"
+       >${label}</a>`
+    ).join('');
+    // close sheet when a link is tapped
+    sheetLinks.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', closeSheet)
+    );
+  }
+
+  function openSheet(tabId, title, items) {
+    if (currentTab === tabId) { closeSheet(); return; }
+    currentTab = tabId;
+    sheetTitle.textContent = title;
+    buildLinks(items);
+    sheet.style.transform = 'translateY(0)';
+    sheet.setAttribute('aria-hidden', 'false');
+    backdrop.style.background = 'rgba(0,0,0,0.35)';
+    backdrop.style.pointerEvents = 'auto';
+    setActive(tabId);
+  }
+
+  function closeSheet() {
+    currentTab = null;
+    sheet.style.transform = 'translateY(110%)';
+    sheet.setAttribute('aria-hidden', 'true');
+    backdrop.style.background = 'rgba(0,0,0,0)';
+    backdrop.style.pointerEvents = 'none';
+    setActive(null);
+  }
+
+  function setActive(tabId) {
+    ['bn-tab-speisen', 'bn-tab-getraenke', 'bn-tab-mehr'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.color = id === tabId ? ACTIVE_COLOR : MUTE_COLOR;
+      el.setAttribute('aria-expanded', id === tabId ? 'true' : 'false');
+    });
+  }
+
+  document.getElementById('bn-tab-speisen')
+    ?.addEventListener('click', () => openSheet('bn-tab-speisen', 'Speisen', speisen));
+  document.getElementById('bn-tab-getraenke')
+    ?.addEventListener('click', () => openSheet('bn-tab-getraenke', 'Getränke', getraenke));
+  document.getElementById('bn-tab-mehr')
+    ?.addEventListener('click', () => openSheet('bn-tab-mehr', 'Mehr', mehr));
+
+  backdrop.addEventListener('click', closeSheet);
+
+  // close on hash navigation (Mittag direct link)
+  document.getElementById('bn-tab-mittag')?.addEventListener('click', closeSheet);
+</script>

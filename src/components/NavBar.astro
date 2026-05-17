@@ -1,0 +1,185 @@
+---
+const tabs = [
+  {
+    id: 'mittag',
+    label: 'Mittagskarte',
+    href: '#mittagskarte',
+    sections: [{ href: '#mittagskarte', label: 'Mittagskarte' }],
+    direct: true,
+  },
+  {
+    id: 'speisen',
+    label: 'Speisen',
+    href: '#vorspeisen',
+    sections: [
+      { href: '#vorspeisen',      label: 'Vorspeisen' },
+      { href: '#platten-salate',  label: 'Platten & Salate' },
+      { href: '#nudeln-fisch',    label: 'Nudeln & Fisch' },
+      { href: '#backofen-pfanne', label: 'Backofen & Pfanne' },
+      { href: '#grill',           label: 'Vom Grill' },
+      { href: '#ueberbacken',     label: 'Überbacken' },
+      { href: '#burger-beilagen', label: 'Burger & Beilagen' },
+      { href: '#desserts',        label: 'Desserts' },
+    ],
+  },
+  {
+    id: 'getraenke',
+    label: 'Getränke',
+    href: '#aperitif',
+    sections: [
+      { href: '#aperitif',     label: 'Aperitif & Sekt' },
+      { href: '#alkoholfrei',  label: 'Alkoholfrei' },
+      { href: '#bier',         label: 'Bier' },
+      { href: '#wein',         label: 'Wein' },
+      { href: '#flaschenwein', label: 'Flaschenweine' },
+      { href: '#kaffee',       label: 'Kaffee & Digestifs' },
+    ],
+  },
+  {
+    id: 'mehr',
+    label: 'Info & Kontakt',
+    href: '#ueber-uns',
+    sections: [
+      { href: '#ueber-uns', label: 'Über uns' },
+      { href: '#allergene', label: 'Allergene' },
+      { href: '#kontakt',   label: 'Kontakt' },
+    ],
+  },
+];
+---
+
+<nav
+  id="desktop-nav"
+  class="hidden md:block sticky top-0 z-50 w-full"
+  style="background: oklch(0.30 0.035 130); border-bottom: 1px solid rgba(255,255,255,0.10);"
+>
+  <div class="flex justify-center">
+    {tabs.map(tab => (
+      <div class="nav-group relative" data-tab={tab.id}>
+
+        {/* Tab button / link */}
+        {tab.direct ? (
+          <a
+            href={tab.href}
+            data-tab={tab.id}
+            data-sections={tab.sections.map(s => s.href.slice(1)).join(',')}
+            class="nav-tab flex items-center gap-1.5 px-10 py-3.5 font-sans text-[11px] font-medium tracking-[0.16em] uppercase whitespace-nowrap transition-colors duration-150 relative"
+            style="color: rgba(255,255,255,0.60);"
+          >
+            {tab.label}
+            <span
+              class="nav-indicator absolute bottom-0 left-4 right-4 h-[2px] rounded-full transition-opacity duration-200"
+              style="background: oklch(0.78 0.06 100); opacity: 0;"
+            ></span>
+          </a>
+        ) : (
+          <button
+            data-tab={tab.id}
+            data-sections={tab.sections.map(s => s.href.slice(1)).join(',')}
+            class="nav-tab flex items-center gap-1.5 px-10 py-3.5 font-sans text-[11px] font-medium tracking-[0.16em] uppercase whitespace-nowrap transition-colors duration-150 relative"
+            style="color: rgba(255,255,255,0.60); background: none; border: none; cursor: pointer;"
+          >
+            {tab.label}
+            <svg width="8" height="5" viewBox="0 0 8 5" fill="none" class="nav-chevron transition-transform duration-200" aria-hidden="true">
+              <path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+            <span
+              class="nav-indicator absolute bottom-0 left-4 right-4 h-[2px] rounded-full transition-opacity duration-200"
+              style="background: oklch(0.78 0.06 100); opacity: 0;"
+            ></span>
+          </button>
+        )}
+
+        {/* Dropdown */}
+        {!tab.direct && (
+          <div
+            class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 min-w-[180px] rounded-b-lg overflow-hidden"
+            style="background: oklch(0.26 0.03 130); box-shadow: 0 12px 32px rgba(0,0,0,0.35); opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-6px); transition: opacity 0.18s, transform 0.18s;"
+          >
+            {tab.sections.map(s => (
+              <a
+                href={s.href}
+                class="nav-dropdown-link block px-5 py-2.5 font-sans text-[11px] tracking-[0.08em] whitespace-nowrap transition-colors duration-100"
+                style="color: rgba(255,255,255,0.70);"
+                onmouseover="this.style.color='rgba(255,255,255,1)'; this.style.background='rgba(255,255,255,0.07)'"
+                onmouseout="this.style.color='rgba(255,255,255,0.70)'; this.style.background=''"
+              >
+                {s.label}
+              </a>
+            ))}
+          </div>
+        )}
+
+      </div>
+    ))}
+  </div>
+</nav>
+
+<script>
+  // --- Dropdown open/close ---
+  document.querySelectorAll<HTMLElement>('.nav-group').forEach(group => {
+    const btn   = group.querySelector<HTMLElement>('.nav-tab');
+    const drop  = group.querySelector<HTMLElement>('.nav-dropdown');
+    const chev  = group.querySelector<HTMLElement>('.nav-chevron');
+    if (!drop) return;
+
+    function open() {
+      drop.style.opacity = '1';
+      drop.style.pointerEvents = 'auto';
+      drop.style.transform = 'translateX(-50%) translateY(0)';
+      if (chev) chev.style.transform = 'rotate(180deg)';
+      if (btn) btn.style.color = 'rgba(255,255,255,1)';
+    }
+    function close() {
+      drop.style.opacity = '0';
+      drop.style.pointerEvents = 'none';
+      drop.style.transform = 'translateX(-50%) translateY(-6px)';
+      if (chev) chev.style.transform = 'rotate(0deg)';
+      // restore color (scroll indicator will re-set if active)
+      if (btn) btn.style.color = btn.dataset.active === '1' ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.60)';
+    }
+
+    group.addEventListener('mouseenter', open);
+    group.addEventListener('mouseleave', close);
+    drop.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  });
+
+  // --- Scroll active indicator ---
+  const tabs = document.querySelectorAll<HTMLElement>('.nav-tab');
+  const sectionMap: Record<string, string> = {};
+  tabs.forEach(tab => {
+    tab.dataset.sections?.split(',').forEach(id => {
+      sectionMap[id] = tab.dataset.tab!;
+    });
+  });
+
+  function setActive(tabId: string | null) {
+    tabs.forEach(tab => {
+      const indicator = tab.querySelector<HTMLElement>('.nav-indicator');
+      const isActive  = tab.dataset.tab === tabId;
+      tab.dataset.active = isActive ? '1' : '0';
+      // only update color if dropdown is not open
+      const group = tab.closest<HTMLElement>('.nav-group');
+      const drop  = group?.querySelector<HTMLElement>('.nav-dropdown');
+      const dropOpen = drop && drop.style.pointerEvents === 'auto';
+      if (!dropOpen) {
+        tab.style.color = isActive ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.60)';
+      }
+      if (indicator) indicator.style.opacity = isActive ? '1' : '0';
+    });
+  }
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActive(sectionMap[entry.target.id] ?? null);
+      });
+    },
+    { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
+  );
+
+  Object.keys(sectionMap).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>

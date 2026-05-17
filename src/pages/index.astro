@@ -1,0 +1,520 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavBar from '../components/NavBar.astro';
+import MenuPage from '../components/MenuPage.astro';
+import MenuSection from '../components/MenuSection.astro';
+import MenuItem from '../components/MenuItem.astro';
+import WineItem from '../components/WineItem.astro';
+import '../styles/global.css';
+import BottomNav from '../components/BottomNav.astro';
+---
+
+<Layout title="El Greco — Speisekarte">
+
+  <!-- 100dvh FIRST SCREEN -->
+  <div style="height: 100dvh; display: flex; flex-direction: column; overflow: hidden;">
+
+  <!-- HERO -->
+  <section id="hero" class="flex flex-col items-center justify-center py-8 px-4" style="background:#7e8e6d;">
+    <img src="/EL GRECO.png" alt="El Greco — Griechisches Restaurant" class="w-full max-w-[320px] h-auto" />
+
+
+  </section>
+
+  <NavBar />
+
+  <!-- ÜBER UNS (fills remaining viewport) -->
+  <div style="flex: 1; overflow: hidden; display: flex; flex-direction: column; justify-content: center;">
+  <MenuPage id="ueber-uns" title="Die Inspiration hinter unserem Namen" footnote={false}>
+    <div class="max-w-2xl mx-auto space-y-4 font-sans text-[14px] leading-relaxed" style="color:var(--ink-soft);">
+      <p>Der Name EL GRECO geht auf den berühmten Maler Dominikos Theotokópoulos zurück. Er wurde im 16. Jahrhundert auf Kreta geboren und wirkte später vor allem in Spanien. Dort erhielt er den Beinamen „El Greco" – „der Grieche".</p>
+      <p>Bis heute gilt El Greco als einer der bedeutendsten Künstler seiner Zeit. Seine Werke sind bekannt für ausdrucksstarke Farben, besondere Tiefe und einen unverwechselbaren Stil. Er verband griechische Herkunft, mediterrane Kultur und europäische Kunst zu etwas Eigenständigem.</p>
+      <p>Dieser Gedanke spiegelt sich in unserem Restaurant wider: griechische Tradition, mediterrane Lebensfreude und besondere Genussmomente für unsere Gäste.</p>
+      <p>EL GRECO steht für Kultur, Gastfreundschaft und die Liebe zu authentischer griechischer Küche – warm, herzlich und voller Geschmack.</p>
+    </div>
+  </MenuPage>
+
+  <!-- Entdecken button -->
+  <div class="flex flex-col items-center gap-5 py-10">
+    <h2 class="font-serif italic font-normal text-center" style="font-size: clamp(22px, 4vw, 34px); color: var(--ink); letter-spacing: 0.04em;">Speisekarte</h2>
+    <a
+      href="#mittagskarte"
+      class="inline-flex items-center gap-3 font-sans text-[10px] tracking-[0.22em] uppercase transition-all duration-200"
+      style="color: var(--ink-mute); border: 1px solid var(--rule); padding: 11px 28px; border-radius: 2px;"
+      onmouseover="this.style.color='var(--ink)'; this.style.borderColor='var(--ink-soft)';"
+      onmouseout="this.style.color='var(--ink-mute)'; this.style.borderColor='var(--rule)';"
+      aria-label="Zur Speisekarte"
+    >
+      Speisekarte entdecken
+      <svg width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true">
+        <path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </div>
+  </div><!-- /flex:1 -->
+  </div><!-- /100dvh -->
+
+  <!-- MITTAGSKARTE -->
+  <MenuPage id="mittagskarte" title="Mittagskarte · Montag bis Freitag" kicker="Μεσημεριανό Μενού" note="Diese Gerichte sind ausschließlich montags bis freitags zur Mittagszeit erhältlich.">
+    <div class="flex flex-col gap-[9px]">
+      <MenuItem number="500" name="Gyros" allergens="G" price="11,90 €" description="Mit Tzatziki, frischen Zwiebeln und Reis." />
+      <MenuItem number="501" name="Souvlaki" allergens="G" price="11,90 €" description="Marinierte Fleischspieße vom Grill, dazu Tzatziki und Reis." />
+      <MenuItem number="502" name="Souzouki" allergens="A(W), G" price="11,50 €" description="Würziges Hackfleischsteak mit Tzatziki und Reis." />
+      <MenuItem number="503" name="Hähnchenbrustfilet" allergens="G" price="11,90 €" description="Mit Tzatziki und Reis." />
+      <MenuItem number="504" name="Rinderleber" allergens="G" price="11,90 €" description="Zart gebraten mit gerösteten Zwiebeln, Tzatziki und Reis." />
+      <MenuItem number="506" name="Gyros mit Käse überbacken" allergens="G, 1" price="13,00 €" description="Gyros in Sauce, mit Käse überbacken, dazu Reis." />
+      <MenuItem number="510" name="Gyros-Salat" allergens="G" price="11,50 €" description="Knackig-frischer Salat mit Gyros und aromatischem Dressing." />
+      <MenuItem number="512" name="Tilapiafilet" allergens="D, G" price="12,50 €" description="Zart gebraten, serviert mit Tzatziki und Reis." />
+      <MenuItem number="514" name="Gyros Spezial" allergens="A(W), G, 1" price="13,00 €" badge="house" description="Gyros mit Reisnudeln, Käse und Metaxasauce überbacken, dazu Brot." />
+      <MenuItem number="515" name="Gyros-Pfanne" allergens="G" price="13,50 €" description="Gyros mit Champignons, Paprika und Zwiebeln in Cassisrahmsauce, dazu Reis." />
+      <MenuItem number="516" name="Schweinesteak überbacken" allergens="G, 1" price="13,00 €" description="In Sauce, mit Käse überbacken, dazu Reis." />
+      <MenuItem number="517" name="Bandnudeln mit Hähnchenbrustfilet in Sahnesauce" allergens="G" price="11,50 €" />
+      <MenuItem number="518" name="Schnitzel mit Metaxasauce und Reis" allergens="A(W), C, G, 1" price="11,90 €" />
+    </div>
+  </MenuPage>
+
+  <!-- SUPPEN & VORSPEISEN -->
+  <MenuPage id="vorspeisen" title="Suppen &amp; Vorspeisen" kicker="Σούπες · Ορεκτικά">
+    <MenuSection title="Suppen">
+      <MenuItem number="01" name="Hühnersuppe" price="4,90 €" />
+      <MenuItem number="02" name="Gulaschsuppe" price="5,90 €" />
+    </MenuSection>
+    <MenuSection title="Kalte Vorspeisen">
+      <MenuItem number="05" name="Hausgemachter Tzatziki" allergens="G" price="5,50 €" />
+      <MenuItem number="06" name="Griechischer Fetakäse mit Oliven und Oregano" allergens="G" price="7,50 €" description="Mit einem Schuss Olivenöl serviert." />
+      <MenuItem number="09" name="Oliven und Peperoni mit frischem Knoblauchdressing" price="7,50 €" />
+    </MenuSection>
+    <MenuSection title="Warme Vorspeisen aus der griechischen Küche">
+      <MenuItem number="15" name="Aubergine und Zucchini" allergens="A(W) · C · G" price="8,90 €" vegetarian description="Frisch in der Pfanne gebraten, mit Knoblauchdressing und Tzatziki." />
+      <MenuItem number="16" name="Florinis" allergens="G" price="8,90 €" vegetarian description="Rote Paprika, gefüllt mit Feta, dazu Knoblauchdressing." />
+      <MenuItem number="17" name="Saganaki" allergens="A(W) · C · G" price="9,50 €" description="Frisch panierter Fetakäse, goldgelb gebacken." />
+      <MenuItem number="18" name="Gegrillte Peperoni" allergens="G" price="8,50 €" vegetarian description="Mit Tzatziki und Knoblauchdressing." />
+      <MenuItem number="19" name="Manitaria gemista" allergens="G · 1" price="9,50 €" description="Champignons, gefüllt mit würzigem Hackfleisch und mit Metaxasauce überbacken." />
+      <MenuItem number="20" name="Knoblauchbrot" allergens="A(W) · C · G" price="5,90 €" description="Knuspriges Knoblauchbrot mit Tzatziki." />
+      <MenuItem number="21" name="Dicke Bohnen" price="7,50 €" vegetarian description="Gebackene weiße Bohnen in Tomatensauce." />
+      <MenuItem number="22" name="Knoblauchbrot mit Käse überbacken" allergens="A(W) · C · G" price="6,90 €" />
+      <MenuItem number="23" name="Ofen-Feta" allergens="G" price="9,50 €" description="Feta aus dem Ofen mit Tomaten, Peperoni, Zwiebeln, Knoblauch, Oregano und Olivenöl." />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- PLATTEN, SALATE & VEGETARISCHES -->
+  <MenuPage id="platten-salate" title="Platten, Salate &amp; Vegetarisches" kicker="Πιατέλες · Σαλάτες · Χορτοφαγικά">
+    <MenuSection title="Vorspeisenplatten zum Teilen">
+      <MenuItem number="30" name="Pikilia für 1 Person" allergens="A(W) · C · G · N · 2 · 3 · 6" price="16,90 €" badge="house" description="Tzatziki, Auberginen, Zucchini, Dolmadakia, Oliven, Peperoni, Paprika, Saganaki und Brot." />
+      <MenuItem number="31" name="Pikilia für 2 Personen" allergens="A(W) · C · G · N · 2 · 3 · 6" price="30,90 €" badge="share" description="Die große Auswahl für zwei – alle Klassiker der griechischen Vorspeisenküche." />
+    </MenuSection>
+    <MenuSection title="Frische Salate mit Brot">
+      <MenuItem number="43" name="Choriatiki groß" allergens="A(W) · G · 2 · 3 · 6" price="13,90 €" vegetarian description="Gurke, Tomaten, Oliven, Paprika, Zwiebeln, Feta, Peperoni, Oregano und Olivenöl." />
+      <MenuItem number="44" name="Caesar-Salat" allergens="A(W) · G" price="16,50 €" description="Hähnchenstreifen, Tomaten, Croûtons und Hausdressing." />
+      <MenuItem number="46" name="Gyros-Salat" allergens="A(W) · G" price="14,50 €" description="Gemischter Salat mit Gyros und aromatischem Hausdressing." />
+    </MenuSection>
+    <MenuSection title="Vegetarische Gerichte">
+      <MenuItem number="50" name="Vegetarische Pfanne" price="14,90 €" vegetarian description="Auberginen, Zucchini, Zwiebeln, Champignons und Paprika in Tomatensauce, dazu Reis." />
+      <MenuItem number="53" name="Backkartoffeln" allergens="G" price="9,90 €" vegetarian description="Ofenkartoffeln mit cremigem Tzatziki und Salatbeilage." />
+      <MenuItem number="54" name="Kritharaki-Pfanne" allergens="A(W)" price="14,20 €" vegetarian description="Griechische Reisnudeln mit Zucchini, Tomaten, Zwiebeln und Paprikaschoten in Tomatensauce." />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- NUDELGERICHTE & FISCHGERICHTE -->
+  <MenuPage id="nudeln-fisch" title="Nudelgerichte &amp; Fischgerichte" kicker="Ζυμαρικά · Ψάρια">
+    <MenuSection title="Nudelgerichte">
+      <MenuItem number="90" name="Bandnudeln mit Hähnchenbrustfilet in Sahnesauce" allergens="A(W), C, G" price="16,90 €" />
+      <MenuItem number="91" name="Bandnudeln mit Lachsfilet in Sahnesauce" allergens="A(W), C, D, G" price="18,90 €" />
+      <MenuItem number="92" name="Spaghetti Bolognese" allergens="A(W)" price="13,90 €" description="Spaghetti mit kräftiger Hackfleischsauce." />
+    </MenuSection>
+    <MenuSection title="Fischgerichte">
+      <MenuItem number="60" name="Calamari" allergens="A(W), G, N" price="21,90 €" description="Gebratene Tintenfischtuben mit Tomatenreis und Tzatziki." />
+      <MenuItem number="62" name="Tilapiafilet" allergens="A(W), D, G, L" price="18,90 €" description="Zart gebraten mit Tomatenreis und Tzatziki." />
+      <MenuItem number="63" name="Garides vom Grill" allergens="B, G" price="24,90 €" description="Mit Tomatenreis und Tzatziki." />
+      <MenuItem number="64" name="Lachsfilet vom Grill" allergens="D, G" price="23,90 €" description="Mit Tomatenreis und Tzatziki." />
+      <MenuItem number="65" name="Fischplatte für 1 Person" allergens="A(W), B, D, G, N" price="25,90 €" badge="house" description="Tintenfischringe, Lachsfilet, Tilapiafilet und Riesengarnelen, dazu Tomatenreis und Tzatziki." />
+      <MenuItem number="66" name="Fischplatte für 2 Personen" allergens="A(W), B, D, G, N" price="47,50 €" badge="share" description="Tintenfischringe, Lachsfilet, Tilapiafilet und Riesengarnelen, dazu Tomatenreis und Tzatziki." />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- AUS DEM BACKOFEN & PFANNE -->
+  <MenuPage id="backofen-pfanne" title="Aus dem Backofen &amp; Aus der Pfanne" kicker="Φούρνος · Τηγάνι">
+    <MenuSection title="Aus dem Backofen">
+      <MenuItem number="72" name="Lammhaxe auf Kritharaki" allergens="A(W), G, 1" price="22,90 €" badge="house" description="Zarte Lammhaxe auf griechischen Reisnudeln, mit Käse überbacken." />
+      <MenuItem number="73" name="Lammhaxe mit Steakhouse Pommes" allergens="G" price="21,90 €" description="Zarte Lammhaxe mit Steakhouse Pommes und Feta." />
+    </MenuSection>
+    <MenuSection title="Aus der Pfanne">
+      <MenuItem number="80" name="Gyros in Metaxasauce" allergens="G, 1" price="19,50 €" description="Mit Champignons, Paprika und Zwiebeln in der Hausmetaxasauce, dazu Reis." />
+      <MenuItem number="81" name="Gyros in Cassisrahmsauce" allergens="G" price="19,50 €" description="Mit Champignons, Paprika und Zwiebeln in samtiger Cassisrahmsauce, dazu Reis." />
+      <MenuItem number="82" name="Lammfleisch in Metaxasauce" allergens="G, 1" price="25,90 €" description="Zartes Lammfleisch mit Champignons und Paprika in der Hausmetaxasauce, dazu Reis." />
+      <MenuItem number="83" name="Lammfleisch in Cassisrahmsauce" allergens="G" price="25,90 €" description="Zartes Lammfleisch mit Champignons und Paprika in feiner Cassisrahmsauce, dazu Reis." />
+      <MenuItem number="84" name="Hähnchenbrustfilet in Metaxasauce" allergens="G, 1" price="20,90 €" description="Mit Champignons und Paprika in der Metaxasauce, dazu Reis." />
+      <MenuItem number="85" name="Schweinefilet in Cassisrahmsauce" allergens="G" price="22,90 €" description="Zartes Schweinefilet mit Champignons und Zwiebeln, dazu Reis." />
+      <MenuItem number="86" name="Schweinefilet in Metaxasauce" allergens="G, 1" price="22,90 €" description="Zartes Schweinefilet mit Champignons und Zwiebeln in der Hausmetaxasauce, dazu Reis." />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- VOM GRILL -->
+  <MenuPage id="grill" title="Vom Grill" kicker="Σχάρα">
+    <MenuSection title="Gyros und Grillplatten">
+      <MenuItem number="125" name="Gyros-Pita-Brot" allergens="A(W), G" price="17,50 €" description="Gyros im Pita-Brot mit frischen Zwiebeln, Tzatziki und Steakhouse Pommes." />
+      <MenuItem number="130" name="Gyros" allergens="G" price="17,50 €" badge="popular" description="Mit frischen Zwiebeln, Tzatziki und Knoblauchkartoffeln." />
+      <MenuItem number="131" name="Gyros mit Metaxasauce" allergens="G, 1" price="18,50 €" description="Mit Metaxasauce und Käse überbacken, dazu Reis." />
+      <MenuItem number="132" name="Rodos-Platte" allergens="G" price="20,90 €" badge="house" description="Gyros, Souvlaki und Souzouki mit Tzatziki, dazu Reis." />
+      <MenuItem number="134" name="Bauernteller" allergens="G" price="20,50 €" description="Gyros, Rinderleber und Souvlaki mit Tzatziki, dazu Reis." />
+      <MenuItem number="135" name="Kreta-Platte" allergens="D, G" price="19,90 €" description="Gyros und Calamari mit Tzatziki, dazu Reis." />
+      <MenuItem number="138" name="El Greco-Platte für 2 Personen" allergens="G" price="44,00 €" badge="share" description="Gyros, zwei Schweinefilets und zwei Souvlaki mit Tzatziki, dazu Reis." />
+    </MenuSection>
+    <MenuSection title="Grill-Spezialitäten">
+      <MenuItem number="140" name="Souvlaki vom Schwein" allergens="G" price="17,90 €" description="Zwei große gegrillte Fleischspieße mit Zwiebeln, Tzatziki und Knoblauchkartoffeln." />
+      <MenuItem number="141" name="Bifteki" allergens="A(W), G" price="18,50 €" badge="popular" description="Hacksteak, gefüllt mit frischen Tomaten, Feta und Peperoni, dazu Tzatziki und Steakhouse Pommes." />
+      <MenuItem number="142" name="Lammkoteletts (5 Stk.)" allergens="G" price="25,90 €" badge="house" description="Fünf zarte Lammkoteletts mit Knoblauchkartoffeln und Tzatziki." />
+      <MenuItem number="143" name="Hähnchenbrustfilets" allergens="G" price="18,90 €" description="Saftige Hähnchenbrustfilets vom Grill mit Reis und Tzatziki." />
+      <MenuItem number="145" name="Rinderleber" allergens="G" price="17,50 €" description="Zart gebraten mit gerösteten Zwiebeln, Tzatziki und Reis." />
+      <MenuItem number="146" name="Lammspieße (2 Stk.)" allergens="G" price="25,90 €" description="Zwei Lammspieße mit Kräuterbutter, Tzatziki und Knoblauchkartoffeln." />
+      <MenuItem number="147" name="Argentinisches Rumpsteak (250 g)" allergens="G" price="26,00 €" description="Mit Kräuterbutter, Tzatziki und Knoblauchkartoffeln." />
+      <MenuItem number="148" name="Souzoukia" allergens="A(W), G" price="17,90 €" description="Drei würzige Hacksteaks mit Tzatziki und Reis." />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- ÜBERBACKEN & SCHNITZEL -->
+  <MenuPage id="ueberbacken" title="Aus dem Ofen überbacken &amp; Schnitzel" kicker="Γκρατινέ · Σνίτσελ">
+    <MenuSection title="Aus dem Ofen überbacken">
+      <MenuItem number="150" name="Bifteki Special" allergens="A(W), G, 1" price="19,90 €" badge="house" description="Hacksteak, gefüllt mit Feta, Tomaten und Peperoni, mit Käse und Metaxasauce überbacken, dazu Reis." />
+      <MenuItem number="152" name="Schweinesteak überbacken" allergens="G, 1" price="19,20 €" description="Mit Käse und Metaxasauce überbacken, dazu Reis." />
+      <MenuItem number="153" name="Hähnchenbrustfilet überbacken" allergens="G, 1" price="19,50 €" description="Mit Käse und Metaxasauce überbacken, dazu Reis." />
+      <MenuItem number="154" name="Hähnchenbrustfilet Hawaii" allergens="G, 1" price="19,90 €" description="Mit Käse, Metaxasauce und Ananas überbacken, dazu Reis." />
+      <MenuItem number="155" name="Gyros Metaxa-Überbacken" allergens="A(W), G, 1" price="19,50 €" description="Gyros mit Reisnudeln, Käse und Metaxasauce überbacken, dazu Brot." />
+      <MenuItem number="156" name="Souvlaki überbacken" allergens="G, 1" price="19,50 €" description="Zwei Fleischspieße mit Käse und Metaxasauce überbacken." />
+    </MenuSection>
+    <MenuSection title="Schnitzel">
+      <MenuItem number="170" name="Schnitzel klassisch" allergens="A(W), C, G" price="16,90 €" description="Knuspriges Schnitzel mit Steakhouse Pommes und Tzatziki." />
+      <MenuItem number="171" name="Schnitzel in Metaxasauce" allergens="A(W), C, G, 1" price="17,50 €" description="Knuspriges Schnitzel mit Metaxasauce und Pommes." />
+      <MenuItem number="172" name="Schnitzel Hawaii" allergens="A(W), C, G, 1" price="19,00 €" description="Mit Käse, Metaxasauce und Ananas überbacken, dazu Pommes." />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- BURGER & BEILAGEN -->
+  <MenuPage id="burger-beilagen" title="Burger · Für unsere kleinen Gäste · Beilagen" kicker="Μπέργκερ · Παιδικό · Συνοδευτικά">
+    <MenuSection title="Hausgemachte Burger">
+      <MenuItem number="173" name="Gyros-Burger" allergens="A(W), G" price="16,50 €" description="Gyros auf dem Hauspatty mit Pommes." />
+      <MenuItem number="174" name="Cheeseburger" allergens="A(W), G" price="16,50 €" description="Klassischer Cheeseburger mit Pommes." />
+    </MenuSection>
+    <MenuSection title="Für unsere kleinen Gäste">
+      <MenuItem number="100" name="Gyros" allergens="G" price="8,90 €" description="Mit Pommes und Tzatziki." />
+      <MenuItem number="101" name="Schnitzel" allergens="A(W), C" price="8,90 €" description="Mit Pommes." />
+      <MenuItem number="102" name="Reisnudeln" allergens="A(W), G, 1" price="8,90 €" description="Mit Tomatensauce und Käse." />
+      <MenuItem number="103" name="Hähnchennuggets" allergens="A(W), C" price="8,90 €" description="Mit Steakhouse Pommes." />
+      <MenuItem number="104" name="Fischstäbchen" allergens="A(W), C, D" price="8,90 €" description="Mit Steakhouse Pommes." />
+    </MenuSection>
+    <MenuSection title="Beilagen">
+      <MenuItem number="110" name="Steakhouse Pommes" price="4,90 €" />
+      <MenuItem number="111" name="Reis mit Tomatensauce" price="4,50 €" />
+      <MenuItem number="112" name="Knoblauchkartoffeln" price="5,00 €" />
+      <MenuItem number="114" name="Reisnudeln" allergens="A(W)" price="4,50 €" />
+      <MenuItem number="115" name="Folienkartoffeln mit Tzatziki" allergens="G" price="6,90 €" />
+      <MenuItem number="116" name="Kroketten" allergens="A(W)" price="4,90 €" />
+    </MenuSection>
+    <MenuSection title="Saucen">
+      <MenuItem number="120" name="Metaxasauce" allergens="G, 1" price="4,50 €" />
+      <MenuItem number="121" name="Joghurtsauce" allergens="G" price="4,00 €" />
+      <MenuItem number="122" name="Knoblauchsauce" allergens="G" price="4,00 €" />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- DESSERTS -->
+  <MenuPage id="desserts" title="Süßer Abschluss" kicker="Γλυκό">
+    <MenuSection title="Nachspeisen">
+      <MenuItem number="200" name="Joghurt mit Honig und Nüssen" allergens="G, H" price="7,50 €" description="Cremiger griechischer Joghurt mit Honig und gehackten Walnüssen." />
+      <MenuItem number="201" name="Chocolate Brownie mit Eis" allergens="A(W), C, G" price="7,50 €" description="Warmer Schokoladenkuchen nach Art des Hauses, serviert mit einer Kugel Eis." />
+    </MenuSection>
+    <MenuSection title="Eis & Dessertklassiker">
+      <MenuItem number="300" name="Eis mit heißen Himbeeren" allergens="G, 1" price="7,50 €" description="Drei Kugeln Vanilleeis mit heißen Himbeeren und Sahne." />
+      <MenuItem number="301" name="Gemischtes Eis" allergens="A(W), G" price="6,50 €" description="Drei Kugeln Eis nach Wahl, mit Eiswaffeln und Sahne." />
+      <MenuItem number="302" name="Schokobecher" allergens="A(W), G, H" price="7,50 €" description="Drei Kugeln Schokoeis mit Schokosauce und Streuseln, Eiswaffeln und Sahne." />
+      <MenuItem number="303" name="Schokokuss" allergens="A(W), C, G, H, 1, 8" price="7,50 €" description="Zwei Kugeln Stracciatella und eine Kugel Schokoeis mit Schokostreuseln und Sahne." />
+      <MenuItem number="305" name="Kleine Leidenschaft" allergens="G" price="2,90 €" description="Eine Kugel Eis nach Wahl mit Sauce und Sahne." />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- APERITIF & SEKT -->
+  <MenuPage id="aperitif" title="Zum Anstoßen" kicker="Απεριτίφ · Σαμπάνια">
+    <MenuSection title="Aperitif">
+      <MenuItem number="296" name="Martini bianco" allergens="L" price="5,50 € | 5 cl" />
+      <MenuItem number="297" name="Ouzo auf Eis" price="4,50 € | 4 cl" />
+    </MenuSection>
+    <MenuSection title="Spritz">
+      <MenuItem number="295" name="Aperol Spritz" allergens="L" price="7,20 € | 4 cl" description="Aperol mit Sekt und Mineralwasser." />
+      <MenuItem number="1296" name="Lillet Spritz" allergens="L" price="7,20 € | 4 cl" description="Lillet mit Sekt und Mineralwasser." />
+    </MenuSection>
+    <MenuSection title="Sekt">
+      <MenuItem number="410" name="Rotkäppchen" allergens="L" price="18,50 € | 0,75 l" />
+      <MenuItem number="411" name="Piccolo Sekt" allergens="L" price="6,50 € | 0,2 l" />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- ALKOHOLFREI -->
+  <MenuPage id="alkoholfrei" title="Alkoholfrei &amp; Erfrischend" kicker="Αναψυκτικά">
+    <MenuSection title="Softdrinks" quantity="0,2 l · 0,4 l">
+      <MenuItem number="240" name="Pepsi-Cola" allergens="1, 2, 9" price="2,90 / 5,20 €" />
+      <MenuItem number="241" name="Pepsi-Cola light" allergens="1, 2, 9, 12" price="2,90 / 5,20 €" />
+      <MenuItem number="242" name="Mirinda" price="2,90 / 5,20 €" />
+      <MenuItem number="243" name="Seven Up" price="2,90 / 5,20 €" />
+      <MenuItem number="244" name="Spezi" allergens="1, 2, 3, 9, 12" price="2,90 / 5,20 €" />
+      <MenuItem number="246" name="Selters Classic" price="2,70 / 4,50 €" />
+      <MenuItem number="247" name="Selters Naturell" price="2,70 / 4,50 €" />
+      <MenuItem number="248" name="Tonic Water" allergens="10" price="2,90 / 5,20 €" />
+      <MenuItem number="250" name="Ginger Ale" allergens="1" price="2,90 / 5,20 €" />
+      <MenuItem number="251" name="Bitter Lemon" allergens="10" price="2,90 / 5,20 €" />
+    </MenuSection>
+    <MenuSection title="Wasser in Flaschen">
+      <MenuItem number="255" name="Selters Classic" price="6,50 € | 0,75 l" />
+      <MenuItem number="257" name="Griechisches stilles Wasser" price="6,50 € | 0,75 l" />
+    </MenuSection>
+    <MenuSection title="Säfte und Nektare" quantity="0,2 l · 0,4 l">
+      <MenuItem number="260" name="Orangensaft" price="2,90 / 5,20 €" />
+      <MenuItem number="261" name="Apfelsaft" price="2,90 / 5,20 €" />
+      <MenuItem number="262" name="Bananennektar" price="2,90 / 5,20 €" />
+      <MenuItem number="263" name="Kirschnektar" price="2,90 / 5,20 €" />
+      <MenuItem number="264" name="Tomatensaft" price="2,90 / 5,20 €" />
+      <MenuItem number="265" name="Johannisbeernektar" price="2,90 / 5,20 €" />
+      <MenuItem number="266" name="Apfelschorle" price="2,90 / 5,20 €" />
+      <MenuItem number="267" name="KiBa" price="2,90 / 5,20 €" />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- BIER -->
+  <MenuPage id="bier" title="Bier" kicker="Μπύρα">
+    <MenuSection title="Bier vom Fass" quantity="0,3 l · 0,5 l">
+      <MenuItem number="220" name="Carlsberg Pilsner" allergens="A(GE)" price="3,50 / 5,10 €" />
+      <MenuItem number="221" name="Duckstein Rotblond" allergens="A(GE)" price="3,50 / 5,10 €" />
+      <MenuItem number="222" name="Mythos" allergens="A(GE)" price="3,50 / 5,10 €" description="Griechisches Bier, frisch vom Fass." />
+      <MenuItem number="223" name="Radler" allergens="A(GE)" price="3,50 / 5,10 €" />
+      <MenuItem number="224" name="Diesel" allergens="A(GE), 1, 2, 9" price="3,50 / 5,10 €" description="Bier-Cola-Mix." />
+    </MenuSection>
+    <MenuSection title="Bier aus der Flasche">
+      <MenuItem number="225" name="Erdinger Weizen dunkel" allergens="A(W), A(GE)" price="5,30 € | 0,5 l" />
+      <MenuItem number="226" name="Erdinger Weizen Kristall" allergens="A(W), A(GE)" price="5,30 € | 0,5 l" />
+      <MenuItem number="227" name="Erdinger Weizen alkoholfrei" allergens="A(W), A(GE)" price="5,30 € | 0,5 l" />
+      <MenuItem number="227b" name="Carlsberg alkoholfrei" allergens="A(GE)" price="4,00 € | 0,33 l" />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- WEINBEGLEITUNG -->
+  <MenuPage id="wein" title="Weinbegleitung" kicker="Κρασί" note="Unsere offenen Weine werden in der Karaffe serviert – 0,25 l oder 0,5 l.">
+    <MenuSection title="Offene Weißweine" quantity="0,2 l · 0,4 l">
+      <WineItem number="375" name="Athos" allergens="L" price="6,90 / 11,90 €" type="Griechischer Weißwein" character="Charakter: Fruchtig, trocken, leicht und frisch." pairing="Passt zu: Salaten, Vorspeisen und leichten Fischgerichten." />
+      <WineItem number="376" name="Retsina" allergens="L" price="6,90 / 11,90 €" type="Traditionell geharzter griechischer Weißwein" character="Charakter: Herb, charakterstark, mit harziger Note." pairing="Passt zu: Fetakäse, Oliven und kräftigen Vorspeisen." />
+      <WineItem number="377" name="Makedonikos" allergens="L" price="6,90 / 11,90 €" type="Griechischer Topikoswein, halbtrocken" character="Charakter: Ausgewogen, mild und gefällig." pairing="Passt zu: Gyros, Pfannengerichten und Überbackenem." />
+      <WineItem number="378" name="Imiglikos" allergens="L" price="6,90 / 11,90 €" type="Griechischer Weißwein, lieblich" character="Charakter: Süßlich, weich und angenehm leicht." pairing="Passt zu: Desserts oder als unkomplizierter Begleiter." />
+      <WineItem number="379" name="Samos Likörwein" allergens="L" price="7,90 / 14,90 €" type="Griechischer Likörwein von der Insel Samos" character="Charakter: Süß, intensiv, mit Noten von getrockneten Früchten und Honig." pairing="Passt zu: Joghurt mit Honig oder als Abschluss nach dem Essen." />
+    </MenuSection>
+    <MenuSection title="Offene Roséweine" quantity="0,2 l · 0,4 l">
+      <WineItem number="390" name="Apellia" allergens="L" price="6,90 / 12,90 €" type="Griechischer Rosé-Tafelwein, trocken" character="Charakter: Frisch, fruchtig, mit zarten roten Beerenaromen." pairing="Passt zu: Salaten, Meeresfrüchten und leichten Grillgerichten." />
+      <WineItem number="391" name="Imiglikos rosé" allergens="L" price="6,90 / 12,90 €" type="Griechischer Roséwein, lieblich" character="Charakter: Weich, fruchtig, angenehm süßlich." pairing="Passt zu: Vorspeisen und leichten Speisen." />
+    </MenuSection>
+    <MenuSection title="Offene Rotweine" quantity="0,2 l · 0,4 l">
+      <WineItem number="380" name="Athos" allergens="L" price="6,90 / 11,90 €" type="Griechischer Rotwein, trocken" character="Charakter: Fruchtig, leicht und zugänglich." pairing="Passt zu: Gyros, Pfannengerichten und überbackenen Gerichten." />
+      <WineItem number="381" name="Makedonikos" allergens="L" price="6,90 / 11,90 €" type="Griechischer Topikoswein, halbtrocken" character="Charakter: Ausgewogen, mild, mit dezenter Frucht." pairing="Passt zu: Grill- und Pfannengerichten." />
+      <WineItem number="382" name="Imiglikos rot" allergens="L" price="6,90 / 11,90 €" type="Griechischer Rotwein, lieblich" character="Charakter: Weich, fruchtig und angenehm mild." pairing="Passt zu: Desserts oder als eigenständigen Genuss." />
+      <WineItem number="383" name="Nemea" allergens="L" price="7,50 / 12,90 €" type="Griechischer Rotwein, trocken" character="Charakter: Körperreich, mit würzigen Noten und reifer Frucht." pairing="Passt zu: Lammgerichten, Grillplatten und kräftigen Fleischgerichten." />
+    </MenuSection>
+    <MenuSection title="Weinschorlen" quantity="0,2 l · 0,4 l">
+      <MenuItem number="394" name="Weißweinschorle" allergens="L" price="5,90 / 10,90 €" />
+      <MenuItem number="395" name="Rotweinschorle" allergens="L" price="5,90 / 10,90 €" />
+      <MenuItem number="396" name="Roséweinschorle" allergens="L" price="5,90 / 10,90 €" />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- FLASCHENWEINE -->
+  <MenuPage id="flaschenwein" title="Flaschenweine" kicker="Εμφιαλωμένα Κρασιά" note="0,75-l-Flaschen · Jahrgang auf Anfrage">
+    <MenuSection title="Weißweine">
+      <WineItem number="400" name="Athos, weiß" allergens="L" price="20,90 €" type="Griechischer Weißwein, trocken" character="Charakter: Frisch, fruchtig und leicht." pairing="Passt zu: Salaten, Vorspeisen und Fischgerichten." />
+      <WineItem number="401" name="Boutari Moschofilero, weiß" allergens="L" price="25,00 €" type="Trockener Qualitätswein · Peloponnes · Rebsorte: Moschofilero" character="Charakter: Klar, feinfruchtig, Zitrusnoten, lebendige Säure und eleganter Abgang." pairing="Passt zu: Fisch, Salaten und leichten Vorspeisen." />
+      <WineItem number="402" name="Makedonikos, weiß" allergens="L" price="23,90 €" type="Griechischer Topikoswein, halbtrocken" character="Charakter: Ausgewogen und zugänglich." pairing="Passt zu: Gyros und leichten Fleischgerichten." />
+      <WineItem number="403" name="Imiglikos, weiß" allergens="L" price="23,90 €" type="Griechischer Weißwein, lieblich" character="Charakter: Weich, süßlich und angenehm mild." pairing="Passt zu: Desserts oder als Aperitif." />
+    </MenuSection>
+    <MenuSection title="Roséwein">
+      <WineItem number="404" name="Vin de Crète, rosé" allergens="L" price="27,90 €" type="Michalakis Estate · Kreta · Kostifali &amp; Mandilari" character="Charakter: Intensive Roséfarbe, rote Beeren im Bukett, fruchtig-erfrischend, feine Säure und langer Abgang." pairing="Passt zu: Meeresfrüchten, Salaten und leichten Grillgerichten." />
+    </MenuSection>
+    <MenuSection title="Rotweine">
+      <WineItem number="405" name="Athos, rot" allergens="L" price="20,90 €" type="Griechischer Rotwein, trocken" character="Charakter: Fruchtig, leicht und zugänglich." pairing="Passt zu: Gyros, Pfannengerichten und Überbackenem." />
+      <WineItem number="406" name="Makedonikos, rot" allergens="L" price="23,90 €" type="Griechischer Topikoswein, halbtrocken" character="Charakter: Ausgewogen, mild, mit dezenter Frucht." pairing="Passt zu: Grill- und Pfannengerichten." />
+      <WineItem number="408" name="Hatzimichalis Cabernet Sauvignon, rot" allergens="L" price="36,00 €" type="Weingut Hatzimichalis · Atalanti · Rebsorte: Cabernet Sauvignon" character="Charakter: Dunkle Beeren, zarte Zitrusnoten; mit Reife samtig, Säure und Tannine in perfekter Harmonie." pairing="Passt zu: Lammgerichten, Grillplatten und kräftigen Fleischspeisen." />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- KAFFEE & DIGESTIFS -->
+  <MenuPage id="kaffee" title="Nach dem Essen" kicker="Καφές · Ποτά">
+    <MenuSection title="Kaffee &amp; Tee">
+      <MenuItem number="415" name="Tee" price="2,70 €" />
+      <MenuItem number="416" name="Tasse Kaffee" allergens="9" price="3,20 €" />
+      <MenuItem number="417" name="Espresso" allergens="9" price="4,00 €" />
+      <MenuItem number="418" name="Doppelter Espresso" allergens="9" price="4,60 €" />
+      <MenuItem number="419" name="Griechischer Mokka" allergens="9" price="3,50 €" description="Traditionell zubereitet, intensiv und aromatisch." />
+      <MenuItem number="420" name="Cappuccino" allergens="G, 9" price="4,00 €" />
+      <MenuItem number="421" name="Latte Macchiato" allergens="G, 9" price="4,70 €" />
+      <MenuItem number="424" name="Heiße Zitrone" price="2,80 €" />
+    </MenuSection>
+    <MenuSection title="Digestifs, Liköre &amp; Whisky">
+      <MenuItem number="270" name="Metaxa 5 Sterne" allergens="1" price="3,70 € | 2 cl" description="Griechische Spirituose mit mildem Charakter." />
+      <MenuItem number="271" name="Metaxa 7 Sterne" allergens="1" price="4,40 € | 2 cl" description="Griechische Spirituose, vollmundig und aromatisch." />
+      <MenuItem number="272" name="Ouzo" price="2,60 € | 2 cl" description="Klassischer griechischer Anisschnaps." />
+      <MenuItem number="273" name="Tsipouro" price="4,20 € | 2 cl" description="Traditionelle griechische Spirituose." />
+      <MenuItem number="274" name="Wodka" price="3,20 € | 2 cl" />
+      <MenuItem number="280" name="Jägermeister" price="2,80 € | 2 cl" />
+      <MenuItem number="281" name="Ramazzotti" price="3,60 € | 2 cl" description="Italienischer Kräuterlikör." />
+      <MenuItem number="282" name="Baileys auf Eis" allergens="G" price="5,60 € | 4 cl" />
+      <MenuItem number="283" name="Johnnie Walker" allergens="1" price="5,70 € | 4 cl" />
+      <MenuItem number="284" name="Jack Daniel's" allergens="1" price="6,20 € | 4 cl" description="Tennessee Whiskey." />
+    </MenuSection>
+    <MenuSection title="Mixgetränke">
+      <MenuItem number="288" name="Wodka-Redbull" allergens="1, 9, 14" price="7,70 € | 4 cl" />
+      <MenuItem number="289" name="Gin-Tonic" allergens="10" price="7,70 € | 4 cl" />
+      <MenuItem number="290" name="Wodka-Orange" price="7,70 € | 4 cl" />
+      <MenuItem number="291" name="Bacardi-Cola / Orange" allergens="1, 2, 9" price="7,70 € | 4 cl" description="Wahlweise mit Cola oder Orangensaft." />
+      <MenuItem number="292" name="Whisky-Cola" allergens="1, 2, 9" price="7,70 € | 4 cl" />
+      <MenuItem number="293" name="Batida-Kirsch" allergens="1" price="7,70 € | 4 cl" />
+      <MenuItem number="294" name="Campari-Orange" allergens="1" price="7,70 € | 4 cl" />
+    </MenuSection>
+  </MenuPage>
+
+  <!-- ALLERGENE -->
+  <MenuPage id="allergene" title="Zusatzstoffe &amp; Allergene" kicker="Πρόσθετα · Αλλεργιογόνα" footnote={false}>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div>
+        <h3 class="font-serif font-semibold text-[15px] mb-3" style="color:var(--olive-700);">Zeichenerklärung</h3>
+        <dl class="space-y-1 font-sans text-[12.5px]" style="color:var(--ink-soft);">
+          <div class="flex gap-3"><dt class="flex-none w-4 font-bold" style="color:var(--terra);">★</dt><dd>Empfehlung des Hauses</dd></div>
+          <div class="flex gap-3"><dt class="flex-none w-4 font-bold" style="color:oklch(0.45 0.10 25);">♥</dt><dd>Zum Teilen – ideal für zwei oder mehr Personen</dd></div>
+          <div class="flex gap-3"><dt class="flex-none w-4 font-bold" style="color:var(--veg);">V</dt><dd>Vegetarisch</dd></div>
+          <div class="flex gap-3"><dt class="flex-none w-4 font-bold" style="color:var(--olive-700);">●</dt><dd>Beliebt bei unseren Gästen</dd></div>
+        </dl>
+      </div>
+      <div>
+        <h3 class="font-serif font-semibold text-[15px] mb-3" style="color:var(--olive-700);">Zusatzstoffe</h3>
+        <dl class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 font-sans text-[12px]" style="color:var(--ink-soft);">
+          <dt class="font-semibold text-right" style="color:var(--ink);">1</dt><dd>mit Farbstoff</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">2</dt><dd>mit Konservierungsstoff</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">3</dt><dd>mit Antioxidationsmittel</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">4</dt><dd>mit Geschmacksverstärker</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">5</dt><dd>geschwefelt</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">6</dt><dd>geschwärzt</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">7</dt><dd>mit Phosphat</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">8</dt><dd>mit Milcheiweiß</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">9</dt><dd>koffeinhaltig</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">10</dt><dd>chininhaltig</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">11</dt><dd>mit Süßungsmittel</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">12</dt><dd>enthält eine Phenylalaninquelle</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">13</dt><dd>gewachst</dd>
+          <dt class="font-semibold text-right" style="color:var(--ink);">14</dt><dd>enthält Taurin</dd>
+        </dl>
+      </div>
+      <div class="md:col-span-2">
+        <h3 class="font-serif font-semibold text-[15px] mb-3" style="color:var(--olive-700);">Allergene</h3>
+        <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-0.5 font-sans text-[12px]" style="color:var(--ink-soft);">
+          <dt class="font-semibold" style="color:var(--ink);">A</dt><dd>glutenhaltiges Getreide und daraus gewonnene Erzeugnisse</dd>
+          <dt class="font-semibold" style="color:var(--ink);">A(W)</dt><dd>Weizen</dd>
+          <dt class="font-semibold" style="color:var(--ink);">A(R)</dt><dd>Roggen</dd>
+          <dt class="font-semibold" style="color:var(--ink);">A(GE)</dt><dd>Gerste</dd>
+          <dt class="font-semibold" style="color:var(--ink);">A(HF)</dt><dd>Hafer</dd>
+          <dt class="font-semibold" style="color:var(--ink);">B</dt><dd>Krebstiere und daraus gewonnene Erzeugnisse</dd>
+          <dt class="font-semibold" style="color:var(--ink);">C</dt><dd>Eier und daraus gewonnene Erzeugnisse</dd>
+          <dt class="font-semibold" style="color:var(--ink);">D</dt><dd>Fisch und daraus gewonnene Erzeugnisse</dd>
+          <dt class="font-semibold" style="color:var(--ink);">E</dt><dd>Erdnüsse und daraus gewonnene Erzeugnisse</dd>
+          <dt class="font-semibold" style="color:var(--ink);">F</dt><dd>Sojabohnen und daraus gewonnene Erzeugnisse</dd>
+          <dt class="font-semibold" style="color:var(--ink);">G</dt><dd>Milch und daraus gewonnene Erzeugnisse (inkl. Laktose)</dd>
+          <dt class="font-semibold" style="color:var(--ink);">H</dt><dd>Schalenfrüchte (Mandeln, Haselnüsse, Walnüsse u. a.)</dd>
+          <dt class="font-semibold" style="color:var(--ink);">I</dt><dd>Sellerie und daraus gewonnene Erzeugnisse</dd>
+          <dt class="font-semibold" style="color:var(--ink);">J</dt><dd>Senf und daraus gewonnene Erzeugnisse</dd>
+          <dt class="font-semibold" style="color:var(--ink);">K</dt><dd>Sesamsamen und daraus gewonnene Erzeugnisse</dd>
+          <dt class="font-semibold" style="color:var(--ink);">L</dt><dd>Schwefeldioxid / Sulphite &gt; 10 mg/kg oder 10 mg/l</dd>
+          <dt class="font-semibold" style="color:var(--ink);">M</dt><dd>Lupinen und daraus gewonnene Erzeugnisse</dd>
+          <dt class="font-semibold" style="color:var(--ink);">N</dt><dd>Weichtiere und daraus gewonnene Erzeugnisse</dd>
+        </dl>
+        <p class="mt-5 font-serif italic text-[12.5px] text-center" style="color:var(--ink-mute);">
+          Bei Allergien oder Unverträglichkeiten sprechen Sie bitte unser Servicepersonal an.
+        </p>
+      </div>
+    </div>
+  </MenuPage>
+
+  <!-- KONTAKT -->
+  <MenuPage id="kontakt" title="So finden Sie uns" kicker="Επικοινωνία" footnote={false}>
+    <div class="max-w-xl mx-auto">
+      <dl class="space-y-4 font-sans text-[13.5px]" style="color:var(--ink-soft);">
+        <div class="grid grid-cols-[130px_1fr] gap-2">
+          <dt class="font-semibold" style="color:var(--ink);">Adresse</dt>
+          <dd class="font-serif italic" style="color:var(--ink-mute);">[Straße und Hausnummer]</dd>
+        </div>
+        <div class="grid grid-cols-[130px_1fr] gap-2">
+          <dt class="font-semibold" style="color:var(--ink);">Telefon</dt>
+          <dd class="font-serif italic" style="color:var(--ink-mute);">[+49 (0) xxx xxx xx xx]</dd>
+        </div>
+        <div class="grid grid-cols-[130px_1fr] gap-2">
+          <dt class="font-semibold" style="color:var(--ink);">E-Mail</dt>
+          <dd class="font-serif italic" style="color:var(--ink-mute);">[info@elgreco-restaurant.de]</dd>
+        </div>
+        <div class="grid grid-cols-[130px_1fr] gap-2">
+          <dt class="font-semibold" style="color:var(--ink);">Website</dt>
+          <dd class="font-serif italic" style="color:var(--ink-mute);">[www.elgreco-restaurant.de]</dd>
+        </div>
+        <div class="grid grid-cols-[130px_1fr] gap-2 pt-2" style="border-top:1px solid var(--rule);">
+          <dt class="font-semibold" style="color:var(--ink);">Mo – Fr</dt>
+          <dd>11:30 – 14:30 Uhr · 17:30 – 23:00 Uhr</dd>
+        </div>
+        <div class="grid grid-cols-[130px_1fr] gap-2">
+          <dt class="font-semibold" style="color:var(--ink);">Sa – So</dt>
+          <dd>12:00 – 23:00 Uhr</dd>
+        </div>
+        <div class="grid grid-cols-[130px_1fr] gap-2 pt-2" style="border-top:1px solid var(--rule);">
+          <dt class="font-semibold" style="color:var(--ink);">Reservierung</dt>
+          <dd>Telefonisch oder über unsere Website – wir freuen uns auf Sie.</dd>
+        </div>
+      </dl>
+    </div>
+  </MenuPage>
+
+  <!-- FOOTER -->
+  <footer class="w-full" style="background: transparent;">
+    <!-- Grafik -->
+    <div class="max-w-4xl mx-auto px-4 pt-8">
+      <img
+        src="/Slice1.png"
+        alt=""
+        class="h-auto block mx-auto"
+        style="max-width: 600px; width: 75%;"
+        aria-hidden="true"
+      />
+    </div>
+
+    <!-- Legal -->
+    <div class="max-w-4xl mx-auto px-4 pt-8 pb-10">
+      <div class="w-10 h-px mx-auto mb-6" style="background: var(--rule);"></div>
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4" aria-label="Footer Navigation">
+        <a href="#kontakt"
+          class="font-sans text-[11px] tracking-[0.12em] uppercase transition-colors duration-150"
+          style="color: var(--ink-mute);"
+          onmouseover="this.style.color='var(--ink)'"
+          onmouseout="this.style.color='var(--ink-mute)'"
+        >Kontakt</a>
+        <a href="/impressum"
+          class="font-sans text-[11px] tracking-[0.12em] uppercase transition-colors duration-150"
+          style="color: var(--ink-mute);"
+          onmouseover="this.style.color='var(--ink)'"
+          onmouseout="this.style.color='var(--ink-mute)'"
+        >Impressum</a>
+        <a href="/datenschutz"
+          class="font-sans text-[11px] tracking-[0.12em] uppercase transition-colors duration-150"
+          style="color: var(--ink-mute);"
+          onmouseover="this.style.color='var(--ink)'"
+          onmouseout="this.style.color='var(--ink-mute)'"
+        >Datenschutz</a>
+      </nav>
+      <p class="text-center font-sans text-[10px]" style="color: var(--ink-mute);">
+        &copy; {new Date().getFullYear()} El Greco &mdash; Griechisches Restaurant. Alle Rechte vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <BottomNav />
+</Layout>
+
+<style>
+  html { scroll-behavior: smooth; }
+</style>
