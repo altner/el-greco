@@ -16,14 +16,14 @@ const { number, name, allergens, price, type, character, pairing } = Astro.props
     <div class="flex-1 min-w-0">
       <div class="flex items-baseline gap-2 flex-wrap">
         <span
-          class="font-sans font-semibold text-[15px]"
+          class="font-serif font-semibold text-[19px] leading-[1.08]"
           style="color: var(--ink);"
         >
           {number && <span class="mr-0.5">{number}.</span>}{name}
         </span>
         {allergens && (
           <span
-            class="font-sans font-medium text-[9.5px] tracking-[0.12em] uppercase"
+            class="font-sans font-medium text-[11.5px] tracking-[0.1em] uppercase"
             style="color: var(--ink-mute);"
           >
             {allergens}
@@ -31,23 +31,23 @@ const { number, name, allergens, price, type, character, pairing } = Astro.props
         )}
       </div>
       {type && (
-        <p class="font-serif italic text-[14px] mt-0.5 leading-snug" style="color: var(--ink-soft);">
+        <p class="font-serif font-medium text-[18px] mt-1.5 leading-[1.35]" style="color: var(--ink-soft);">
           {type}
         </p>
       )}
       {character && (
-        <p class="font-serif italic text-[13.5px] leading-snug" style="color: var(--ink-mute);">
+        <p class="font-serif font-medium text-[17px] leading-[1.35]" style="color: var(--ink-soft);">
           {character}
         </p>
       )}
       {pairing && (
-        <p class="font-serif italic text-[13.5px] leading-snug" style="color: var(--ink-mute);">
+        <p class="font-serif font-medium text-[17px] leading-[1.35]" style="color: var(--ink-soft);">
           {pairing}
         </p>
       )}
     </div>
     <span
-      class="font-sans font-medium text-[15px] whitespace-nowrap text-right flex-none"
+      class="font-serif font-semibold text-[18px] whitespace-nowrap text-right flex-none"
       style="color: var(--ink); font-variant-numeric: tabular-nums; min-width: 7rem;"
     >
       {price}

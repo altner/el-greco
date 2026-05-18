@@ -1,0 +1,47 @@
+<button
+  id="back-to-top"
+  type="button"
+  class="back-to-top fixed z-40 flex items-center justify-center rounded-full transition-all duration-200"
+  style="opacity: 0; pointer-events: none; transform: translateY(8px);"
+  aria-label="Zurück nach oben"
+>
+  <i class="ti ti-arrow-up" style="font-size: 22px;" aria-hidden="true"></i>
+</button>
+
+<style>
+  .back-to-top {
+    right: 16px;
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+    width: 44px;
+    height: 44px;
+    background: oklch(0.30 0.035 130);
+    color: #fff;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.22);
+  }
+
+  @media (min-width: 768px) {
+    .back-to-top {
+      right: 24px;
+      bottom: 24px;
+    }
+  }
+</style>
+
+<script>
+  const button = document.getElementById('back-to-top');
+
+  function updateBackToTop() {
+    if (!button) return;
+    const visible = window.scrollY > 520;
+    button.style.opacity = visible ? '1' : '0';
+    button.style.pointerEvents = visible ? 'auto' : 'none';
+    button.style.transform = visible ? 'translateY(0)' : 'translateY(8px)';
+  }
+
+  button?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  window.addEventListener('scroll', updateBackToTop, { passive: true });
+  updateBackToTop();
+</script>

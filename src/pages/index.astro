@@ -7,33 +7,32 @@ import MenuItem from '../components/MenuItem.astro';
 import WineItem from '../components/WineItem.astro';
 import '../styles/global.css';
 import BottomNav from '../components/BottomNav.astro';
-import ContactFab from '../components/ContactFab.astro';
+import BackToTop from '../components/BackToTop.astro';
 import { CONTACT } from '../data/contact';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <Layout title="El Greco — Speisekarte">
 
-  <!-- FIRST SCREEN: full-height on desktop, natural height on mobile -->
-  <div class="md:min-h-[100dvh] flex flex-col">
-
   <!-- HERO -->
-  <section id="hero" class="flex-none max-h-[28dvh] md:max-h-[40dvh] flex flex-col items-center justify-center py-6 md:py-8 px-4 overflow-hidden" style="background:#7e8e6d;">
+  <section id="hero" class="max-h-[28dvh] md:max-h-[40dvh] flex flex-col items-center justify-center py-6 md:py-8 px-4 overflow-hidden" style="background:#7e8e6d;">
 
     <img src={`${base}/EL GRECO.png`} alt="El Greco — Griechisches Restaurant" class="w-full max-w-[200px] md:max-w-[320px] max-h-full object-contain" />
   </section>
 
+  <NavBar />
+
   <!-- ÜBER UNS -->
-  <section id="ueber-uns" class="md:flex-1 flex flex-col items-center justify-center gap-6 px-6 py-6" style="background: var(--paper);">
+  <section id="ueber-uns" class="md:min-h-[52dvh] flex flex-col items-center justify-center gap-6 px-6 py-6" style="background: var(--paper);">
     <div class="w-full max-w-xl">
       <h2
         class="font-serif font-medium italic text-center leading-tight mb-1"
-        style="font-size: clamp(20px, 3.5vw, 28px); color: var(--olive-900); letter-spacing: 0.005em;"
+        style="font-size: clamp(28px, 3.5vw, 38px); color: var(--olive-900); letter-spacing: 0.005em;"
       >
         Die Inspiration hinter unserem Namen
       </h2>
       <div class="w-8 h-px mx-auto my-3" style="background: var(--olive-500);"></div>
-      <div class="space-y-3 font-sans text-[13.5px] leading-relaxed" style="color: var(--ink-soft);">
+      <div class="space-y-3 font-serif font-medium text-[19px] leading-[1.55]" style="color: var(--ink-soft);">
         <p>Der Name EL GRECO geht auf den berühmten Maler Dominikos Theotokópoulos zurück. Er wurde im 16. Jahrhundert auf Kreta geboren und wirkte später vor allem in Spanien. Dort erhielt er den Beinamen „El Greco" – „der Grieche".</p>
         <p>Bis heute gilt El Greco als einer der bedeutendsten Künstler seiner Zeit. Seine Werke verbanden griechische Herkunft, mediterrane Kultur und europäische Kunst zu etwas Eigenständigem.</p>
         <p>EL GRECO steht für Kultur, Gastfreundschaft und die Liebe zu authentischer griechischer Küche – warm, herzlich und voller Geschmack.</p>
@@ -43,10 +42,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <!-- Entdecken button -->
     <a
       href="#mittagskarte"
-      class="inline-flex items-center gap-3 font-sans text-[10px] tracking-[0.22em] uppercase transition-all duration-200 flex-shrink-0"
-      style="color: var(--ink-mute); border: 1px solid var(--rule); padding: 11px 28px; border-radius: 2px;"
+      class="inline-flex items-center gap-3 font-sans text-[12px] tracking-[0.16em] uppercase transition-all duration-200 flex-shrink-0"
+      style="color: var(--ink-soft); border: 1px solid var(--rule); padding: 11px 28px; border-radius: 2px;"
       onmouseover="this.style.color='var(--ink)'; this.style.borderColor='var(--ink-soft)';"
-      onmouseout="this.style.color='var(--ink-mute)'; this.style.borderColor='var(--rule)';"
+      onmouseout="this.style.color='var(--ink-soft)'; this.style.borderColor='var(--rule)';"
       aria-label="Zur Speisekarte"
     >
       Speisekarte entdecken
@@ -55,9 +54,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       </svg>
     </a>
   </section>
-  </div><!-- /first screen -->
-
-  <NavBar />
 
   <!-- MITTAGSKARTE -->
   <MenuPage id="mittagskarte" title="Mittagskarte · Montag bis Freitag" kicker="Μεσημεριανό Μενού" note="Diese Gerichte sind ausschließlich montags bis freitags zur Mittagszeit erhältlich.">
@@ -383,8 +379,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <MenuPage id="allergene" title="Zusatzstoffe &amp; Allergene" kicker="Πρόσθετα · Αλλεργιογόνα" footnote={false}>
     <div class="grid md:grid-cols-2 gap-8">
       <div>
-        <h3 class="font-serif font-semibold text-[15px] mb-3" style="color:var(--olive-700);">Zeichenerklärung</h3>
-        <dl class="space-y-1 font-sans text-[12.5px]" style="color:var(--ink-soft);">
+        <h3 class="font-serif font-semibold text-[18px] mb-3" style="color:var(--olive-700);">Zeichenerklärung</h3>
+        <dl class="space-y-1 font-sans text-[13.5px]" style="color:var(--ink-soft);">
           <div class="flex gap-3"><dt class="flex-none w-4 font-bold" style="color:var(--terra);">★</dt><dd>Empfehlung des Hauses</dd></div>
           <div class="flex gap-3"><dt class="flex-none w-4 font-bold" style="color:oklch(0.45 0.10 25);">♥</dt><dd>Zum Teilen – ideal für zwei oder mehr Personen</dd></div>
           <div class="flex gap-3"><dt class="flex-none w-4 font-bold" style="color:var(--veg);">V</dt><dd>Vegetarisch</dd></div>
@@ -392,8 +388,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         </dl>
       </div>
       <div>
-        <h3 class="font-serif font-semibold text-[15px] mb-3" style="color:var(--olive-700);">Zusatzstoffe</h3>
-        <dl class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 font-sans text-[12px]" style="color:var(--ink-soft);">
+        <h3 class="font-serif font-semibold text-[18px] mb-3" style="color:var(--olive-700);">Zusatzstoffe</h3>
+        <dl class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 font-sans text-[13px]" style="color:var(--ink-soft);">
           <dt class="font-semibold text-right" style="color:var(--ink);">1</dt><dd>mit Farbstoff</dd>
           <dt class="font-semibold text-right" style="color:var(--ink);">2</dt><dd>mit Konservierungsstoff</dd>
           <dt class="font-semibold text-right" style="color:var(--ink);">3</dt><dd>mit Antioxidationsmittel</dd>
@@ -411,8 +407,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         </dl>
       </div>
       <div class="md:col-span-2">
-        <h3 class="font-serif font-semibold text-[15px] mb-3" style="color:var(--olive-700);">Allergene</h3>
-        <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-0.5 font-sans text-[12px]" style="color:var(--ink-soft);">
+        <h3 class="font-serif font-semibold text-[18px] mb-3" style="color:var(--olive-700);">Allergene</h3>
+        <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-0.5 font-sans text-[13px]" style="color:var(--ink-soft);">
           <dt class="font-semibold" style="color:var(--ink);">A</dt><dd>glutenhaltiges Getreide und daraus gewonnene Erzeugnisse</dd>
           <dt class="font-semibold" style="color:var(--ink);">A(W)</dt><dd>Weizen</dd>
           <dt class="font-semibold" style="color:var(--ink);">A(R)</dt><dd>Roggen</dd>
@@ -432,7 +428,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <dt class="font-semibold" style="color:var(--ink);">M</dt><dd>Lupinen und daraus gewonnene Erzeugnisse</dd>
           <dt class="font-semibold" style="color:var(--ink);">N</dt><dd>Weichtiere und daraus gewonnene Erzeugnisse</dd>
         </dl>
-        <p class="mt-5 font-serif italic text-[12.5px] text-center" style="color:var(--ink-mute);">
+        <p class="mt-5 font-serif italic text-[15px] text-center" style="color:var(--ink-mute);">
           Bei Allergien oder Unverträglichkeiten sprechen Sie bitte unser Servicepersonal an.
         </p>
       </div>
@@ -442,7 +438,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <!-- KONTAKT -->
   <MenuPage id="kontakt" title="So finden Sie uns" kicker="Επικοινωνία" footnote={false}>
     <div class="max-w-xl mx-auto">
-      <dl class="space-y-4 font-sans text-[13.5px]" style="color:var(--ink-soft);">
+      <dl class="space-y-4 font-serif text-[17px]" style="color:var(--ink-soft);">
         <div class="grid grid-cols-[130px_1fr] gap-2">
           <dt class="font-semibold" style="color:var(--ink);">Adresse</dt>
           <dd class="font-serif italic" style="color:var(--ink-mute);">[Straße und Hausnummer]</dd>
@@ -460,6 +456,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <dd class="font-serif italic" style="color:var(--ink-mute);">[www.elgreco-restaurant.de]</dd>
         </div>
         <div class="grid grid-cols-[130px_1fr] gap-2 pt-2" style="border-top:1px solid var(--rule);">
+          <dt class="font-semibold" style="color:var(--ink);">Reservierung</dt>
+          <dd>Telefonisch oder über unsere Website – wir freuen uns auf Sie.</dd>
+        </div>
+      </dl>
+    </div>
+  </MenuPage>
+
+  <!-- ÖFFNUNGSZEITEN -->
+  <MenuPage id="oeffnungszeiten" title="Öffnungszeiten" kicker="Ώρες λειτουργίας" footnote={false}>
+    <div class="max-w-xl mx-auto">
+      <dl class="space-y-4 font-serif text-[17px]" style="color:var(--ink-soft);">
+        <div class="grid grid-cols-[130px_1fr] gap-2">
           <dt class="font-semibold" style="color:var(--ink);">Mo – Fr</dt>
           <dd>11:30 – 14:30 Uhr · 17:30 – 23:00 Uhr</dd>
         </div>
@@ -468,8 +476,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <dd>12:00 – 23:00 Uhr</dd>
         </div>
         <div class="grid grid-cols-[130px_1fr] gap-2 pt-2" style="border-top:1px solid var(--rule);">
-          <dt class="font-semibold" style="color:var(--ink);">Reservierung</dt>
-          <dd>Telefonisch oder über unsere Website – wir freuen uns auf Sie.</dd>
+          <dt class="font-semibold" style="color:var(--ink);">Feiertage</dt>
+          <dd class="font-serif italic" style="color:var(--ink-mute);">Bitte telefonisch anfragen.</dd>
         </div>
       </dl>
     </div>
@@ -518,7 +526,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   </footer>
 
   <BottomNav />
-  <ContactFab />
+  <BackToTop />
 </Layout>
 
 <style>

@@ -11,24 +11,29 @@ const { id, title, kicker, note, footnote = true } = Astro.props;
 
 <section
   {id}
-  class="py-14 px-4"
+  class="menu-page px-4"
   style="background: transparent;"
 >
+  <div class="section-separator max-w-4xl mx-auto flex items-center gap-3" aria-hidden="true">
+    <span></span>
+    <i></i>
+    <span></span>
+  </div>
   <div class="max-w-4xl mx-auto">
     <div
-      class="overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
+      class="overflow-hidden shadow-[0_10px_34px_rgba(0,0,0,0.16)]"
       style="background: var(--paper);"
     >
       <!-- Section title -->
       <div class="px-8 md:px-14 pt-8 pb-0">
         <h2
           class="font-serif font-medium italic text-center leading-tight mb-1"
-          style="font-size: clamp(24px, 4vw, 34px); color: var(--olive-900); letter-spacing: 0.005em;"
+          style="font-size: clamp(30px, 4vw, 42px); color: var(--olive-900); letter-spacing: 0.005em;"
           set:html={title}
         />
         {kicker && (
           <p
-            class="text-center text-[10px] tracking-[0.38em] uppercase mb-2.5"
+            class="text-center text-[12px] tracking-[0.24em] uppercase mb-2.5"
             style="color: var(--ink-mute);"
           >
             {kicker}
@@ -37,7 +42,7 @@ const { id, title, kicker, note, footnote = true } = Astro.props;
         <div class="w-10 h-px mx-auto mb-5" style="background: var(--olive-500);"></div>
         {note && (
           <p
-            class="text-center font-serif italic text-[15px] mb-6 -mt-1"
+            class="text-center font-serif font-medium text-[18px] leading-[1.4] mb-6 -mt-1"
             style="color: var(--ink-soft);"
             set:html={note}
           />
@@ -52,3 +57,31 @@ const { id, title, kicker, note, footnote = true } = Astro.props;
     </div>
   </div>
 </section>
+
+<style>
+  .menu-page {
+    padding-top: 1.75rem;
+    padding-bottom: 0;
+  }
+
+  .menu-page:last-of-type {
+    padding-bottom: 1.75rem;
+  }
+
+  .section-separator {
+    margin-bottom: 1.75rem;
+  }
+
+  .section-separator span {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .section-separator i {
+    width: 7px;
+    height: 7px;
+    border: 1px solid var(--olive-500);
+    transform: rotate(45deg);
+  }
+</style>

@@ -1,5 +1,13 @@
 ---
+import { CONTACT } from '../data/contact';
+
+const reservieren = [
+  { href: CONTACT.phoneHref, label: CONTACT.phoneDisplay },
+  { href: CONTACT.emailHref, label: CONTACT.emailDisplay },
+];
+
 const speisen = [
+  { href: '#mittagskarte',   label: 'Mittagskarte' },
   { href: '#vorspeisen',      label: 'Vorspeisen' },
   { href: '#platten-salate',  label: 'Platten & Salate' },
   { href: '#nudeln-fisch',    label: 'Nudeln & Fisch' },
@@ -19,10 +27,6 @@ const getraenke = [
   { href: '#kaffee',      label: 'Kaffee & Digestifs' },
 ];
 
-const mehr = [
-  { href: '#ueber-uns',  label: 'Über uns' },
-  { href: '#kontakt',    label: 'Kontakt' },
-];
 ---
 
 <!-- Backdrop -->
@@ -46,7 +50,7 @@ const mehr = [
   </div>
   <!-- Title -->
   <p id="bn-sheet-title"
-    class="text-center font-sans text-[10px] tracking-[0.22em] uppercase pb-2"
+    class="text-center font-sans text-[11px] tracking-[0.2em] uppercase pb-2"
     style="color: var(--ink-mute);"
   ></p>
   <!-- Links -->
@@ -61,57 +65,57 @@ const mehr = [
 >
   <ul class="flex justify-around items-center h-16" role="list">
 
-    <!-- Mittag -->
+    <!-- Reservieren -->
     <li>
-      <a href="#mittagskarte" id="bn-tab-mittag"
-        class="bn-tab flex flex-col items-center gap-[3px] px-4 py-2"
-        style="color: var(--ink-mute); text-decoration: none;"
+      <button id="bn-tab-reservieren"
+        class="bn-tab flex flex-col items-center gap-[3px] px-3 py-2 w-full"
+        style="color: var(--ink-mute); background: none; border: none; cursor: pointer;"
+        aria-expanded="false"
       >
-        <i class="ti ti-clock-hour-12" style="font-size: 22px;" aria-hidden="true"></i>
-        <span class="font-sans text-[10px] tracking-[0.1em] uppercase">Mittag</span>
-      </a>
+        <i class="ti ti-phone" style="font-size: 22px;" aria-hidden="true"></i>
+        <span class="font-sans text-[11px] tracking-[0.08em] uppercase">Reservieren</span>
+      </button>
     </li>
 
     <!-- Speisen -->
     <li>
       <button id="bn-tab-speisen"
-        class="bn-tab flex flex-col items-center gap-[3px] px-4 py-2 w-full"
+        class="bn-tab flex flex-col items-center gap-[3px] px-3 py-2 w-full"
         style="color: var(--ink-mute); background: none; border: none; cursor: pointer;"
         aria-expanded="false"
       >
         <i class="ti ti-tools-kitchen-2" style="font-size: 22px;" aria-hidden="true"></i>
-        <span class="font-sans text-[10px] tracking-[0.1em] uppercase">Speisen</span>
+        <span class="font-sans text-[11px] tracking-[0.08em] uppercase">Speisen</span>
       </button>
     </li>
 
     <!-- Getränke -->
     <li>
       <button id="bn-tab-getraenke"
-        class="bn-tab flex flex-col items-center gap-[3px] px-4 py-2 w-full"
+        class="bn-tab flex flex-col items-center gap-[3px] px-3 py-2 w-full"
         style="color: var(--ink-mute); background: none; border: none; cursor: pointer;"
         aria-expanded="false"
       >
         <i class="ti ti-glass-full" style="font-size: 22px;" aria-hidden="true"></i>
-        <span class="font-sans text-[10px] tracking-[0.1em] uppercase">Getränke</span>
+        <span class="font-sans text-[11px] tracking-[0.08em] uppercase">Getränke</span>
       </button>
     </li>
 
-    <!-- Mehr -->
+    <!-- Öffnungszeiten -->
     <li>
-      <button id="bn-tab-mehr"
-        class="bn-tab flex flex-col items-center gap-[3px] px-4 py-2 w-full"
-        style="color: var(--ink-mute); background: none; border: none; cursor: pointer;"
-        aria-expanded="false"
+      <a href="#oeffnungszeiten" id="bn-tab-oeffnungszeiten"
+        class="bn-tab flex flex-col items-center gap-[3px] px-3 py-2"
+        style="color: var(--ink-mute); text-decoration: none;"
       >
-        <i class="ti ti-dots" style="font-size: 22px;" aria-hidden="true"></i>
-        <span class="font-sans text-[10px] tracking-[0.1em] uppercase">Mehr</span>
-      </button>
+        <i class="ti ti-clock-hour-4" style="font-size: 22px;" aria-hidden="true"></i>
+        <span class="font-sans text-[11px] tracking-[0.08em] uppercase">Zeiten</span>
+      </a>
     </li>
 
   </ul>
 </nav>
 
-<script define:vars={{ speisen, getraenke, mehr }}>
+<script define:vars={{ reservieren, speisen, getraenke }}>
   const sheet     = document.getElementById('bn-sheet');
   const backdrop  = document.getElementById('bn-backdrop');
   const sheetTitle = document.getElementById('bn-sheet-title');
@@ -125,7 +129,7 @@ const mehr = [
   function buildLinks(items) {
     sheetLinks.innerHTML = items.map(({ href, label }) =>
       `<a href="${href}"
-          class="block font-sans font-medium text-[14px] px-6 py-[11px]"
+          class="block font-sans font-medium text-[16px] px-6 py-3"
           style="color: var(--ink); border-bottom: 1px solid var(--rule); text-decoration: none;"
           onmouseover="this.style.background='oklch(0.96 0.008 85)'"
           onmouseout="this.style.background=''"
@@ -159,7 +163,7 @@ const mehr = [
   }
 
   function setActive(tabId) {
-    ['bn-tab-speisen', 'bn-tab-getraenke', 'bn-tab-mehr'].forEach(id => {
+    ['bn-tab-reservieren', 'bn-tab-speisen', 'bn-tab-getraenke'].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
       el.style.color = id === tabId ? ACTIVE_COLOR : MUTE_COLOR;
@@ -167,15 +171,15 @@ const mehr = [
     });
   }
 
+  document.getElementById('bn-tab-reservieren')
+    ?.addEventListener('click', () => openSheet('bn-tab-reservieren', 'Reservieren', reservieren));
   document.getElementById('bn-tab-speisen')
     ?.addEventListener('click', () => openSheet('bn-tab-speisen', 'Speisen', speisen));
   document.getElementById('bn-tab-getraenke')
     ?.addEventListener('click', () => openSheet('bn-tab-getraenke', 'Getränke', getraenke));
-  document.getElementById('bn-tab-mehr')
-    ?.addEventListener('click', () => openSheet('bn-tab-mehr', 'Mehr', mehr));
 
   backdrop.addEventListener('click', closeSheet);
 
-  // close on hash navigation (Mittag direct link)
-  document.getElementById('bn-tab-mittag')?.addEventListener('click', closeSheet);
+  // close on hash navigation (direct link)
+  document.getElementById('bn-tab-oeffnungszeiten')?.addEventListener('click', closeSheet);
 </script>
