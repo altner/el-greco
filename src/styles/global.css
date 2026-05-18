@@ -22,6 +22,7 @@
     font-family: 'Manrope', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: geometricPrecision;
+    scroll-padding-top: 48px;
   }
 
   body {

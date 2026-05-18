@@ -7,24 +7,24 @@ import MenuItem from '../components/MenuItem.astro';
 import WineItem from '../components/WineItem.astro';
 import '../styles/global.css';
 import BottomNav from '../components/BottomNav.astro';
+import ContactFab from '../components/ContactFab.astro';
+import { CONTACT } from '../data/contact';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <Layout title="El Greco — Speisekarte">
 
-  <!-- 100dvh FIRST SCREEN -->
-  <div class="h-[100dvh] flex flex-col overflow-clip">
+  <!-- FIRST SCREEN: full-height on desktop, natural height on mobile -->
+  <div class="md:min-h-[100dvh] flex flex-col">
 
   <!-- HERO -->
-  <section id="hero" class="flex-none max-h-[40dvh] flex flex-col items-center justify-center py-8 px-4 overflow-hidden" style="background:#7e8e6d;">
+  <section id="hero" class="flex-none max-h-[28dvh] md:max-h-[40dvh] flex flex-col items-center justify-center py-6 md:py-8 px-4 overflow-hidden" style="background:#7e8e6d;">
 
-    <img src={`${base}/EL GRECO.png`} alt="El Greco — Griechisches Restaurant" class="w-full max-w-[320px] max-h-full object-contain" />
+    <img src={`${base}/EL GRECO.png`} alt="El Greco — Griechisches Restaurant" class="w-full max-w-[200px] md:max-w-[320px] max-h-full object-contain" />
   </section>
 
-  <NavBar />
-
-  <!-- ÜBER UNS (fills remaining viewport) -->
-  <section id="ueber-uns" class="flex-1 min-h-0 flex flex-col items-center justify-center gap-6 px-6 py-6 overflow-y-auto" style="background: var(--paper);">
+  <!-- ÜBER UNS -->
+  <section id="ueber-uns" class="md:flex-1 flex flex-col items-center justify-center gap-6 px-6 py-6" style="background: var(--paper);">
     <div class="w-full max-w-xl">
       <h2
         class="font-serif font-medium italic text-center leading-tight mb-1"
@@ -55,7 +55,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       </svg>
     </a>
   </section>
-  </div><!-- /100dvh -->
+  </div><!-- /first screen -->
+
+  <NavBar />
 
   <!-- MITTAGSKARTE -->
   <MenuPage id="mittagskarte" title="Mittagskarte · Montag bis Freitag" kicker="Μεσημεριανό Μενού" note="Diese Gerichte sind ausschließlich montags bis freitags zur Mittagszeit erhältlich.">
@@ -447,11 +449,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         </div>
         <div class="grid grid-cols-[130px_1fr] gap-2">
           <dt class="font-semibold" style="color:var(--ink);">Telefon</dt>
-          <dd class="font-serif italic" style="color:var(--ink-mute);">[+49 (0) xxx xxx xx xx]</dd>
+          <dd><a href={CONTACT.phoneHref} style="color:var(--ink); text-decoration: underline; text-underline-offset: 3px;">{CONTACT.phoneDisplay}</a></dd>
         </div>
         <div class="grid grid-cols-[130px_1fr] gap-2">
           <dt class="font-semibold" style="color:var(--ink);">E-Mail</dt>
-          <dd class="font-serif italic" style="color:var(--ink-mute);">[info@elgreco-restaurant.de]</dd>
+          <dd><a href={CONTACT.emailHref} style="color:var(--ink); text-decoration: underline; text-underline-offset: 3px;">{CONTACT.emailDisplay}</a></dd>
         </div>
         <div class="grid grid-cols-[130px_1fr] gap-2">
           <dt class="font-semibold" style="color:var(--ink);">Website</dt>
@@ -516,6 +518,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   </footer>
 
   <BottomNav />
+  <ContactFab />
 </Layout>
 
 <style>
