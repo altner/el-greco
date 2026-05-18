@@ -14,8 +14,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   <NavBar />
 
-  <!-- 100dvh FIRST SCREEN — desktop subtracts NavBar height (~44px) -->
-  <div class="h-[100dvh] md:h-[calc(100dvh-44px)] flex flex-col overflow-hidden">
+  <!-- 100dvh FIRST SCREEN — md:pt-[44px] offsets the fixed NavBar -->
+  <div class="h-[100dvh] flex flex-col md:pt-[44px] overflow-hidden">
 
   <!-- HERO -->
   <section id="hero" class="flex-none max-h-[40dvh] flex flex-col items-center justify-center py-8 px-4 overflow-hidden" style="background:#7e8e6d;">
