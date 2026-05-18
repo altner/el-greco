@@ -18,12 +18,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="h-[100dvh] md:h-[calc(100dvh-44px)] flex flex-col overflow-hidden">
 
   <!-- HERO -->
-  <section id="hero" class="flex-none flex flex-col items-center justify-center py-8 px-4" style="background:#7e8e6d;">
-    <img src={`${base}/EL GRECO.png`} alt="El Greco — Griechisches Restaurant" class="w-full max-w-[320px] h-auto" />
+  <section id="hero" class="flex-none max-h-[40dvh] flex flex-col items-center justify-center py-8 px-4 overflow-hidden" style="background:#7e8e6d;">
+    <img src={`${base}/EL GRECO.png`} alt="El Greco — Griechisches Restaurant" class="w-full max-w-[320px] max-h-full object-contain" />
   </section>
 
   <!-- ÜBER UNS (fills remaining viewport) -->
-  <div class="flex-1 overflow-hidden flex flex-col justify-center">
+  <div class="flex-1 min-h-0 overflow-hidden flex flex-col justify-center">
   <MenuPage id="ueber-uns" title="Die Inspiration hinter unserem Namen" footnote={false}>
     <div class="max-w-2xl mx-auto space-y-4 font-sans text-[14px] leading-relaxed" style="color:var(--ink-soft);">
       <p>Der Name EL GRECO geht auf den berühmten Maler Dominikos Theotokópoulos zurück. Er wurde im 16. Jahrhundert auf Kreta geboren und wirkte später vor allem in Spanien. Dort erhielt er den Beinamen „El Greco" – „der Grieche".</p>
