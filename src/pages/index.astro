@@ -12,20 +12,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <Layout title="El Greco — Speisekarte">
 
-  <!-- 100dvh FIRST SCREEN -->
-  <div style="height: 100dvh; display: flex; flex-direction: column; overflow: hidden;">
-
-  <!-- HERO -->
-  <section id="hero" class="flex flex-col items-center justify-center py-8 px-4" style="background:#7e8e6d;">
-    <img src={`${base}/EL GRECO.png`} alt="El Greco — Griechisches Restaurant" class="w-full max-w-[320px] h-auto" />
-
-
-  </section>
-
   <NavBar />
 
+  <!-- 100dvh FIRST SCREEN — desktop subtracts NavBar height (~44px) -->
+  <div class="h-[100dvh] md:h-[calc(100dvh-44px)] flex flex-col overflow-hidden">
+
+  <!-- HERO -->
+  <section id="hero" class="flex-none flex flex-col items-center justify-center py-8 px-4" style="background:#7e8e6d;">
+    <img src={`${base}/EL GRECO.png`} alt="El Greco — Griechisches Restaurant" class="w-full max-w-[320px] h-auto" />
+  </section>
+
   <!-- ÜBER UNS (fills remaining viewport) -->
-  <div style="flex: 1; overflow: hidden; display: flex; flex-direction: column; justify-content: center;">
+  <div class="flex-1 overflow-hidden flex flex-col justify-center">
   <MenuPage id="ueber-uns" title="Die Inspiration hinter unserem Namen" footnote={false}>
     <div class="max-w-2xl mx-auto space-y-4 font-sans text-[14px] leading-relaxed" style="color:var(--ink-soft);">
       <p>Der Name EL GRECO geht auf den berühmten Maler Dominikos Theotokópoulos zurück. Er wurde im 16. Jahrhundert auf Kreta geboren und wirkte später vor allem in Spanien. Dort erhielt er den Beinamen „El Greco" – „der Grieche".</p>
