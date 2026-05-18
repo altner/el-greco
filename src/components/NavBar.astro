@@ -1,16 +1,5 @@
 ---
-import { CONTACT } from '../data/contact';
-
 const tabs = [
-  {
-    id: 'reservieren',
-    label: 'Reservieren',
-    href: CONTACT.phoneHref,
-    sections: [
-      { href: CONTACT.phoneHref, label: CONTACT.phoneDisplay },
-      { href: CONTACT.emailHref, label: CONTACT.emailDisplay },
-    ],
-  },
   {
     id: 'speisen',
     label: 'Speisen',
@@ -41,13 +30,11 @@ const tabs = [
     ],
   },
   {
-    id: 'mehr',
-    label: 'Info & Kontakt',
-    href: '#ueber-uns',
-    sections: [
-      { href: '#ueber-uns', label: 'Über uns' },
-      { href: '#kontakt',   label: 'Kontakt' },
-    ],
+    id: 'kontakt',
+    label: 'Kontakt',
+    href: '#kontakt',
+    sections: [{ href: '#kontakt', label: 'Kontakt' }],
+    direct: true,
   },
   {
     id: 'oeffnungszeiten',
@@ -57,6 +44,12 @@ const tabs = [
     direct: true,
   },
 ];
+
+const sectionIds = (sections: { href: string }[]) =>
+  sections
+    .filter(section => section.href.startsWith('#'))
+    .map(section => section.href.slice(1))
+    .join(',');
 ---
 
 <nav
@@ -66,14 +59,17 @@ const tabs = [
 >
   <div class="flex justify-center">
     {tabs.map(tab => (
-      <div class="nav-group relative" data-tab={tab.id}>
+      <div
+        class="nav-group relative"
+        data-tab={tab.id}
+      >
 
         {/* Tab button / link */}
         {tab.direct ? (
           <a
             href={tab.href}
             data-tab={tab.id}
-            data-sections={tab.sections.map(s => s.href.slice(1)).join(',')}
+            data-sections={sectionIds(tab.sections)}
             class="nav-tab flex items-center gap-1.5 px-9 py-3.5 font-sans text-[12px] font-medium tracking-[0.14em] uppercase whitespace-nowrap transition-colors duration-150 relative"
             style="color: rgba(255,255,255,0.60);"
           >
@@ -86,7 +82,7 @@ const tabs = [
         ) : (
           <button
             data-tab={tab.id}
-            data-sections={tab.sections.map(s => s.href.slice(1)).join(',')}
+            data-sections={sectionIds(tab.sections)}
             class="nav-tab flex items-center gap-1.5 px-9 py-3.5 font-sans text-[12px] font-medium tracking-[0.14em] uppercase whitespace-nowrap transition-colors duration-150 relative"
             style="color: rgba(255,255,255,0.60); background: none; border: none; cursor: pointer;"
           >
@@ -110,11 +106,14 @@ const tabs = [
             {tab.sections.map(s => (
               <a
                 href={s.href}
-                class="nav-dropdown-link block px-5 py-3 font-sans text-[12px] tracking-[0.08em] whitespace-nowrap transition-colors duration-100"
+                class="nav-dropdown-link flex items-center gap-2 px-5 py-3 font-sans text-[12px] tracking-[0.08em] whitespace-nowrap transition-colors duration-100"
                 style="color: rgba(255,255,255,0.70);"
                 onmouseover="this.style.color='rgba(255,255,255,1)'; this.style.background='rgba(255,255,255,0.07)'"
                 onmouseout="this.style.color='rgba(255,255,255,0.70)'; this.style.background=''"
               >
+                {'icon' in s && s.icon && (
+                  <i class={`ti ti-${s.icon}`} style="font-size: 16px;" aria-hidden="true"></i>
+                )}
                 {s.label}
               </a>
             ))}
@@ -133,18 +132,19 @@ const tabs = [
     const drop  = group.querySelector<HTMLElement>('.nav-dropdown');
     const chev  = group.querySelector<HTMLElement>('.nav-chevron');
     if (!drop) return;
+    const dropdown = drop;
 
     function open() {
-      drop.style.opacity = '1';
-      drop.style.pointerEvents = 'auto';
-      drop.style.transform = 'translateX(-50%) translateY(0)';
+      dropdown.style.opacity = '1';
+      dropdown.style.pointerEvents = 'auto';
+      dropdown.style.transform = 'translateX(-50%) translateY(0)';
       if (chev) chev.style.transform = 'rotate(180deg)';
       if (btn) btn.style.color = 'rgba(255,255,255,1)';
     }
     function close() {
-      drop.style.opacity = '0';
-      drop.style.pointerEvents = 'none';
-      drop.style.transform = 'translateX(-50%) translateY(-6px)';
+      dropdown.style.opacity = '0';
+      dropdown.style.pointerEvents = 'none';
+      dropdown.style.transform = 'translateX(-50%) translateY(-6px)';
       if (chev) chev.style.transform = 'rotate(0deg)';
       // restore color (scroll indicator will re-set if active)
       if (btn) btn.style.color = btn.dataset.active === '1' ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.60)';
@@ -152,7 +152,7 @@ const tabs = [
 
     group.addEventListener('mouseenter', open);
     group.addEventListener('mouseleave', close);
-    drop.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    dropdown.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
   });
 
   // --- Scroll active indicator ---

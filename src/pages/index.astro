@@ -8,6 +8,7 @@ import WineItem from '../components/WineItem.astro';
 import '../styles/global.css';
 import BottomNav from '../components/BottomNav.astro';
 import BackToTop from '../components/BackToTop.astro';
+import HeaderReservation from '../components/HeaderReservation.astro';
 import { CONTACT } from '../data/contact';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
@@ -15,15 +16,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <Layout title="El Greco — Speisekarte">
 
   <!-- HERO -->
-  <section id="hero" class="max-h-[28dvh] md:max-h-[40dvh] flex flex-col items-center justify-center py-6 md:py-8 px-4 overflow-hidden" style="background:#7e8e6d;">
+  <section id="hero" class="relative max-h-[28dvh] md:max-h-[40dvh] flex flex-col items-center justify-center py-6 md:py-8 px-4 overflow-visible" style="background:#7e8e6d;">
+    <HeaderReservation />
 
     <img src={`${base}/EL GRECO.png`} alt="El Greco — Griechisches Restaurant" class="w-full max-w-[200px] md:max-w-[320px] max-h-full object-contain" />
   </section>
 
   <NavBar />
 
-  <!-- ÜBER UNS -->
-  <section id="ueber-uns" class="md:min-h-[52dvh] flex flex-col items-center justify-center gap-6 px-6 py-6" style="background: var(--paper);">
+  <!-- NAMENSINSPIRATION -->
+  <section id="namensinspiration" class="md:min-h-[52dvh] flex flex-col items-center justify-center gap-6 px-6 py-6" style="background: var(--paper);">
     <div class="w-full max-w-xl">
       <h2
         class="font-serif font-medium italic text-center leading-tight mb-1"

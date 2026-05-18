@@ -2,8 +2,8 @@
 import { CONTACT } from '../data/contact';
 
 const reservieren = [
-  { href: CONTACT.phoneHref, label: CONTACT.phoneDisplay },
-  { href: CONTACT.emailHref, label: CONTACT.emailDisplay },
+  { href: CONTACT.phoneHref, label: CONTACT.phoneDisplay, icon: 'phone' },
+  { href: CONTACT.emailHref, label: CONTACT.emailDisplay, icon: 'mail' },
 ];
 
 const speisen = [
@@ -68,12 +68,14 @@ const getraenke = [
     <!-- Reservieren -->
     <li>
       <button id="bn-tab-reservieren"
-        class="bn-tab flex flex-col items-center gap-[3px] px-3 py-2 w-full"
-        style="color: var(--ink-mute); background: none; border: none; cursor: pointer;"
+        class="bn-tab bn-tab-cta flex flex-col items-center gap-[3px] px-3 py-2 w-full"
+        style="color: oklch(0.30 0.035 130); background: none; border: none; cursor: pointer;"
         aria-expanded="false"
       >
-        <i class="ti ti-phone" style="font-size: 22px;" aria-hidden="true"></i>
-        <span class="font-sans text-[11px] tracking-[0.08em] uppercase">Reservieren</span>
+        <span class="bn-cta-icon flex items-center justify-center rounded-full">
+          <i class="ti ti-calendar-check" style="font-size: 21px;" aria-hidden="true"></i>
+        </span>
+        <span class="font-sans font-semibold text-[11px] tracking-[0.08em] uppercase">Reservieren</span>
       </button>
     </li>
 
@@ -115,6 +117,16 @@ const getraenke = [
   </ul>
 </nav>
 
+<style>
+  .bn-cta-icon {
+    width: 34px;
+    height: 34px;
+    background: oklch(0.30 0.035 130);
+    color: #fff;
+    box-shadow: 0 5px 14px rgba(0,0,0,0.18);
+  }
+</style>
+
 <script define:vars={{ reservieren, speisen, getraenke }}>
   const sheet     = document.getElementById('bn-sheet');
   const backdrop  = document.getElementById('bn-backdrop');
@@ -127,13 +139,13 @@ const getraenke = [
   let currentTab = null;
 
   function buildLinks(items) {
-    sheetLinks.innerHTML = items.map(({ href, label }) =>
+    sheetLinks.innerHTML = items.map(({ href, label, icon }) =>
       `<a href="${href}"
-          class="block font-sans font-medium text-[16px] px-6 py-3"
+          class="flex items-center gap-3 font-sans font-medium text-[16px] px-6 py-3"
           style="color: var(--ink); border-bottom: 1px solid var(--rule); text-decoration: none;"
           onmouseover="this.style.background='oklch(0.96 0.008 85)'"
           onmouseout="this.style.background=''"
-       >${label}</a>`
+       >${icon ? `<i class="ti ti-${icon}" style="font-size: 20px;" aria-hidden="true"></i>` : ''}<span>${label}</span></a>`
     ).join('');
     // close sheet when a link is tapped
     sheetLinks.querySelectorAll('a').forEach(a =>
