@@ -23,22 +23,26 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   </section>
 
   <!-- ÜBER UNS (fills remaining viewport) -->
-  <div class="flex-1 min-h-0 overflow-hidden flex flex-col justify-center">
-  <MenuPage id="ueber-uns" title="Die Inspiration hinter unserem Namen" footnote={false}>
-    <div class="max-w-2xl mx-auto space-y-4 font-sans text-[14px] leading-relaxed" style="color:var(--ink-soft);">
-      <p>Der Name EL GRECO geht auf den berühmten Maler Dominikos Theotokópoulos zurück. Er wurde im 16. Jahrhundert auf Kreta geboren und wirkte später vor allem in Spanien. Dort erhielt er den Beinamen „El Greco" – „der Grieche".</p>
-      <p>Bis heute gilt El Greco als einer der bedeutendsten Künstler seiner Zeit. Seine Werke sind bekannt für ausdrucksstarke Farben, besondere Tiefe und einen unverwechselbaren Stil. Er verband griechische Herkunft, mediterrane Kultur und europäische Kunst zu etwas Eigenständigem.</p>
-      <p>Dieser Gedanke spiegelt sich in unserem Restaurant wider: griechische Tradition, mediterrane Lebensfreude und besondere Genussmomente für unsere Gäste.</p>
-      <p>EL GRECO steht für Kultur, Gastfreundschaft und die Liebe zu authentischer griechischer Küche – warm, herzlich und voller Geschmack.</p>
+  <section id="ueber-uns" class="flex-1 min-h-0 flex flex-col items-center justify-center gap-6 px-6 py-6 overflow-y-auto" style="background: var(--paper);">
+    <div class="w-full max-w-xl">
+      <h2
+        class="font-serif font-medium italic text-center leading-tight mb-1"
+        style="font-size: clamp(20px, 3.5vw, 28px); color: var(--olive-900); letter-spacing: 0.005em;"
+      >
+        Die Inspiration hinter unserem Namen
+      </h2>
+      <div class="w-8 h-px mx-auto my-3" style="background: var(--olive-500);"></div>
+      <div class="space-y-3 font-sans text-[13.5px] leading-relaxed" style="color: var(--ink-soft);">
+        <p>Der Name EL GRECO geht auf den berühmten Maler Dominikos Theotokópoulos zurück. Er wurde im 16. Jahrhundert auf Kreta geboren und wirkte später vor allem in Spanien. Dort erhielt er den Beinamen „El Greco" – „der Grieche".</p>
+        <p>Bis heute gilt El Greco als einer der bedeutendsten Künstler seiner Zeit. Seine Werke verbanden griechische Herkunft, mediterrane Kultur und europäische Kunst zu etwas Eigenständigem.</p>
+        <p>EL GRECO steht für Kultur, Gastfreundschaft und die Liebe zu authentischer griechischer Küche – warm, herzlich und voller Geschmack.</p>
+      </div>
     </div>
-  </MenuPage>
 
-  <!-- Entdecken button -->
-  <div class="flex flex-col items-center gap-5 py-10">
-    <h2 class="font-serif italic font-normal text-center" style="font-size: clamp(22px, 4vw, 34px); color: var(--ink); letter-spacing: 0.04em;">Speisekarte</h2>
+    <!-- Entdecken button -->
     <a
       href="#mittagskarte"
-      class="inline-flex items-center gap-3 font-sans text-[10px] tracking-[0.22em] uppercase transition-all duration-200"
+      class="inline-flex items-center gap-3 font-sans text-[10px] tracking-[0.22em] uppercase transition-all duration-200 flex-shrink-0"
       style="color: var(--ink-mute); border: 1px solid var(--rule); padding: 11px 28px; border-radius: 2px;"
       onmouseover="this.style.color='var(--ink)'; this.style.borderColor='var(--ink-soft)';"
       onmouseout="this.style.color='var(--ink-mute)'; this.style.borderColor='var(--rule)';"
@@ -49,8 +53,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
       </svg>
     </a>
-  </div>
-  </div><!-- /flex:1 -->
+  </section>
   </div><!-- /100dvh -->
 
   <!-- MITTAGSKARTE -->
