@@ -49,3 +49,5 @@ Typography:
 The `.leaders` CSS class (in `global.css`) renders the dotted line between a menu item name and its price.
 
 Icons come from Tabler Icons webfont (loaded via CDN in `Layout.astro`), used in `BottomNav` as `<i class="ti ti-*">`.
+
+
